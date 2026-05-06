@@ -28,15 +28,16 @@ export default function NewGameForm() {
 
   async function getNewGameData() {
     try {
-      const jsonStringTest = JSON.stringify({
+      const requestBody = {
         blackPlayerName,
         redPlayerName,
         selectedConfig,
-      });
-      console.log(jsonStringTest);
+      };
+      const requestBodyString = JSON.stringify(requestBody);
+
       const response = await fetch(newGameEndpoint, {
         method: "POST",
-        body: jsonStringTest,
+        body: requestBodyString,
         headers: { "Content-Type": "application/json; charset=UTF-8" },
       });
 
