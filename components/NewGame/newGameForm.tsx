@@ -95,7 +95,7 @@ export default function NewGameForm() {
       </div>
 
       <div>
-        <DisplayBoard />
+        <DisplayBoard boardState={newGameData.boardState} />
       </div>
     </div>
   );
