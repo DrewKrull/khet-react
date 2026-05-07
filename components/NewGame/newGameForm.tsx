@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { newGameEndpoint, loadGameEndpoint } from "@/constants/KhetConstants";
-import DisplayBoard from "@/components/NewGame/board";
-import Board from "@/components/NewGame/board";
+import DisplayBoard from "@/components/Board/board";
+import Board from "@/components/Board/board";
 
 export default function NewGameForm() {
   const [blackPlayerName, setBlackPlayerName] = useState("Black Player Name");

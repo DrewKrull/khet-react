@@ -1,4 +1,4 @@
-import BoardColumn from "../boardColumn";
+import BoardColumn from "./boardColumn";
 
 export default function Board({ boardState }) {
   console.log(boardState);

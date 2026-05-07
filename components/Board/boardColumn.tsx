@@ -1,4 +1,4 @@
-import BoardCell from "./NewGame/boardCell";
+import BoardCell from "./boardCell";
 
 export default function BoardColumn({ column }) {
   return (
