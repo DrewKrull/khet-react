@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { newGameEndpoint, loadGameEndpoint } from "@/constants/KhetConstants";
+import DisplayBoard from "@/components/NewGame/displayBoard";
 
 export default function NewGameForm() {
   const [blackPlayerName, setBlackPlayerName] = useState("Black Player Name");
@@ -88,9 +89,13 @@ export default function NewGameForm() {
       </form>
 
       <div>
-        New Game Data:
+        New Game Data:./gradlew wrapper --gradle-version 8.14.4
         <div>Black Player Name : {newGameData.BlackPlayerName}</div>
         <div>Red Player Name : {newGameData.RedPlayerName}</div>
+      </div>
+
+      <div>
+        <DisplayBoard />
       </div>
     </div>
   );

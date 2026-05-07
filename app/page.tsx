@@ -1,4 +1,4 @@
-import NewGameForm from "@/components/newGameForm";
+import NewGameForm from "@/components/NewGame/newGameForm";
 export default function Home() {
   return (
     <div>
