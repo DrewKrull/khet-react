@@ -4,13 +4,17 @@ export default function DisplayBoard({ boardState }) {
     <div>
       <b>Board Display</b>
       <div className="board">
-        {boardState.columns.map((column) => (
-          <div key={column.columnNumber}>Bah</div>
-        ))}
-        {/* <div className="board-column">
-          <div className="board-cell" />
-        </div>
-        <div className="board-column"></div> */}
+        {boardState &&
+          boardState.columns &&
+          boardState.columns.map((column) => (
+            <div key={column.columnNumber}>
+              {column.cells.map((cell) => (
+                <div className="board-cell" key={cell.rowNumber}>
+                  ∅
+                </div>
+              ))}
+            </div>
+          ))}
       </div>
     </div>
   );
