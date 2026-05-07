@@ -6,7 +6,7 @@ import DisplayBoard from "@/components/Board/board";
 import Board from "@/components/Board/board";
 
 export default function NewGameForm() {
-  const [blackPlayerName, setBlackPlayerName] = useState("Black Player Name");
+  const [greyPlayerName, setGreyPlayerName] = useState("Grey Player Name");
   const [redPlayerName, setRedPlayerName] = useState("Red Player Name");
   const [selectedConfig, setSelectedConfig] = useState("setup1");
   const [newGameData, setNewGameData] = useState([]); // Might be temporary once we know where we're actually putting the data
@@ -15,8 +15,8 @@ export default function NewGameForm() {
     setRedPlayerName(e.target.value);
   }
 
-  function handleBlackPlayerNameChange(e) {
-    setBlackPlayerName(e.target.value);
+  function handleGreyPlayerNameChange(e) {
+    setGreyPlayerName(e.target.value);
   }
 
   function handleSelectedConfigChange(e) {
@@ -31,7 +31,7 @@ export default function NewGameForm() {
   async function getNewGameData() {
     try {
       const requestBody = {
-        blackPlayerName,
+        greyPlayerName,
         redPlayerName,
         selectedConfig,
       };
@@ -68,12 +68,12 @@ export default function NewGameForm() {
           />
         </div>
         <div className="form-row">
-          <label>Black Player Name:</label>
+          <label>Grey Player Name:</label>
           <input
-            name="blackPlayerNameInput"
+            name="greyPlayerNameInput"
             type="text"
-            value={blackPlayerName}
-            onChange={handleBlackPlayerNameChange}
+            value={greyPlayerName}
+            onChange={handleGreyPlayerNameChange}
           />
         </div>
         <div className="form-row">
@@ -91,7 +91,7 @@ export default function NewGameForm() {
 
       <div>
         New Game Data:
-        <div>Black Player Name : {newGameData.BlackPlayerName}</div>
+        <div>Grey Player Name : {newGameData.GreyPlayerName}</div>
         <div>Red Player Name : {newGameData.RedPlayerName}</div>
       </div>
 
