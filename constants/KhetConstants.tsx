@@ -14,6 +14,7 @@ export const ENTITY_TYPE_EMPTY = "Empty";
 // Image base path
 export const IMAGE_PATH = "/images/";
 // Images
+export const IMAGE_KHET_HEADER = "header.png";
 export const IMAGE_EMPTY_DARK_GREY = "darkGreyEmpty.png";
 export const IMAGE_DJED_GREY = "greyDjed.png";
 export const IMAGE_OBELISK_GREY_DOUBLE = "greyDoubleObelisk.png";
