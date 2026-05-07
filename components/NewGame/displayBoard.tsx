@@ -3,11 +3,15 @@ export default function DisplayBoard({ boardState }) {
   return (
     <div>
       <b>Board Display</b>
-      {boardState &&
-        boardState.columns &&
-        boardState.columns.map((column, columnIndex) => (
-          <li key={columnIndex}>{column.columnNumber}</li>
+      <div className="board">
+        {boardState.columns.map((column) => (
+          <div key={column.columnNumber}>Bah</div>
         ))}
+        {/* <div className="board-column">
+          <div className="board-cell" />
+        </div>
+        <div className="board-column"></div> */}
+      </div>
     </div>
   );
 }

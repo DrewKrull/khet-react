@@ -89,7 +89,7 @@ export default function NewGameForm() {
       </form>
 
       <div>
-        New Game Data:./gradlew wrapper --gradle-version 8.14.4
+        New Game Data:
         <div>Black Player Name : {newGameData.BlackPlayerName}</div>
         <div>Red Player Name : {newGameData.RedPlayerName}</div>
       </div>
