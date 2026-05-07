@@ -1,7 +1,6 @@
 import BoardColumn from "./boardColumn";
 
 export default function Board({ boardState }) {
-  console.log(boardState);
   return (
     <div>
       <b>Board Display</b>

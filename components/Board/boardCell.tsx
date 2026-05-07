@@ -1,3 +1,23 @@
+import entityTypeToImage from "@/util/Resolvers";
+import Image from "next/image";
+
 export default function BoardCell({ cell }) {
-  return <div className="board-cell">∅</div>;
+  const entityType =
+    cell.entity && cell.entity["@type"] && cell.entity["@type"];
+  const entityImage = entityTypeToImage(entityType);
+
+  return (
+    <div className="board-cell">
+      <div>
+        {entityImage && (
+          <Image
+            src={entityImage}
+            width="50"
+            height="50"
+            alt="Game piece image"
+          />
+        )}
+      </div>
+    </div>
+  );
 }
