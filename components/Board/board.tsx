@@ -2,8 +2,8 @@ import BoardColumn from "./boardColumn";
 
 export default function Board({ boardState }) {
   return (
-    <div>
-      <b>Board Display</b>
+    <div className="board-container">
+      <b>Board:</b>
       <div className="board">
         {boardState &&
           boardState.columns &&
