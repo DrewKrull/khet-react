@@ -22,7 +22,7 @@ function entityToImage(entityType, entityPlayer) {
   let imageFile = IMAGE_PATH;
 
   if (entityType == ENTITY_TYPE_DJED) {
-    if (entityPlayer == PLAYER_RED) imageFile += IMAGE_DJED_GREY;
+    if (entityPlayer == PLAYER_RED) imageFile += IMAGE_DJED_RED;
     else imageFile += IMAGE_DJED_GREY;
   } else if (entityType == ENTITY_TYPE_OBELISK) {
     if (entityPlayer == PLAYER_RED) imageFile += IMAGE_OBELISK_RED_DOUBLE;
