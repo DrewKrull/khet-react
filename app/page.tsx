@@ -6,7 +6,7 @@ export default function Home() {
   console.log(headerImage);
 
   return (
-    <div>
+    <div className="khet-container">
       <div className="khet-header">
         <Image src={headerImage} width="749" height="50" alt="KHET Branding" />
       </div>

@@ -9,7 +9,7 @@ export default function BoardCell({ cell }) {
 
   return (
     <div className="board-cell">
-      <div>
+      <div className="board-cell-image-container">
         {entityImage && (
           <Image
             className="board-cell-image"
