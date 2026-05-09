@@ -7,9 +7,14 @@ export default function BoardCell({ cell }) {
   const entityPlayer = cell.entity && cell.entity.player && cell.entity.player;
   const entityImage = entityTypeToImage(entityType, entityPlayer);
 
+  const entityOrientation = cell.entity && cell.entity.orientation;
+  console.log(entityOrientation);
+
   return (
     <div className="board-cell">
-      <div className="board-cell-image-container">
+      <div
+        className={`board-cell-image-container ${entityOrientation && "entityOrientation-" + entityOrientation}`}
+      >
         {entityImage && (
           <Image
             className="board-cell-image"

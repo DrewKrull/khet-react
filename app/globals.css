@@ -23,10 +23,22 @@ input {
 }
 
 .board-cell-image-container {
+}
+
+.entity-orientation-SW {
+  transform: rotateZ(0deg);
+}
+.entity-orientation-NW {
+  transform: rotateZ(90deg);
+}
+.entity-orientation-NE {
   transform: rotateZ(180deg);
 }
+.entity-orientation-SE {
+  transform: rotateZ(270deg);
+}
+
 .board-cell-image {
   width: 100%;
   height: 100%;
-  transform: rotateZ(90);
 }
