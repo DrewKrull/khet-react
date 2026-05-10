@@ -26,7 +26,6 @@ export default function NewGameForm() {
   }
 
   function handleSelectedConfigChange(e) {
-    console.log(e);
     setSelectedConfig(e.target.value);
   }
 
