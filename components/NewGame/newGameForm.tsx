@@ -8,6 +8,7 @@ import {
 } from "@/constants/KhetConstants";
 import DisplayBoard from "@/components/Board/board";
 import Board from "@/components/Board/board";
+import { getNewGameData } from "@/service/khetservice";
 
 export default function NewGameForm() {
   const [greyPlayerName, setGreyPlayerName] = useState("Grey Player Name");
@@ -31,34 +32,9 @@ export default function NewGameForm() {
 
   function handleNewGameSubmit(e) {
     e.preventDefault();
-    getNewGameData();
-  }
-
-  async function getNewGameData() {
-    try {
-      const requestBody = {
-        greyPlayerName,
-        redPlayerName,
-        selectedConfig,
-      };
-      const requestBodyString = JSON.stringify(requestBody);
-
-      const response = await fetch(newGameEndpoint, {
-        method: "POST",
-        body: requestBodyString,
-        headers: { "Content-Type": "application/json; charset=UTF-8" },
-      });
-
-      if (!response.ok) {
-        throw new Error("Response status: ${response.status}");
-      }
-
-      // Read in the actual data
-      const responseData = await response.json();
-      setNewGameData(responseData.board);
-    } catch (error) {
-      if (error instanceof Error) console.error(error.message);
-    }
+    getNewGameData(greyPlayerName, redPlayerName, selectedConfig).then(
+      (newGameData) => setNewGameData(newGameData),
+    );
   }
 
   return (
