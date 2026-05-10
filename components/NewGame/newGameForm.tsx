@@ -1,14 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { newGameEndpoint, loadGameEndpoint } from "@/constants/KhetConstants";
+import {
+  newGameEndpoint,
+  loadGameEndpoint,
+  configurationOptions,
+} from "@/constants/KhetConstants";
 import DisplayBoard from "@/components/Board/board";
 import Board from "@/components/Board/board";
 
 export default function NewGameForm() {
   const [greyPlayerName, setGreyPlayerName] = useState("Grey Player Name");
   const [redPlayerName, setRedPlayerName] = useState("Red Player Name");
-  const [selectedConfig, setSelectedConfig] = useState("setup1");
+  const [selectedConfig, setSelectedConfig] = useState(
+    configurationOptions[0].value,
+  );
   const [newGameData, setNewGameData] = useState([]); // Might be temporary once we know where we're actually putting the data
 
   function handleRedPlayerNameChange(e) {
@@ -20,6 +26,7 @@ export default function NewGameForm() {
   }
 
   function handleSelectedConfigChange(e) {
+    console.log(e);
     setSelectedConfig(e.target.value);
   }
 
@@ -78,13 +85,17 @@ export default function NewGameForm() {
         </div>
         <div className="form-row">
           <label>Configuration:</label>
-          <input
+          <select
             name="selectedConfigInput"
-            type="text"
             value={selectedConfig}
             onChange={handleSelectedConfigChange}
-            disabled
-          />
+          >
+            {configurationOptions.map((configOption) => (
+              <option key={configOption.value} value={configOption.value}>
+                {configOption.display}
+              </option>
+            ))}
+          </select>
         </div>
         <input type="submit" />
       </form>

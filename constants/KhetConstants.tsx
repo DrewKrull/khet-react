@@ -4,6 +4,9 @@ export const loadGameEndpoint = "http://localhost:8080/loadGame";
 export const PLAYER_GREY = "GREY";
 export const PLAYER_RED = "RED";
 
+// Config options
+export const configurationOptions = [{ display: "Classic", value: "CLASSIC" }];
+
 // Entity Types
 export const ENTITY_TYPE_DJED = "Djed";
 export const ENTITY_TYPE_OBELISK = "Obelisk";
