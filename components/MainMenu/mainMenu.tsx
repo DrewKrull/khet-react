@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import NewGameForm from "../NewGame/newGameForm";
+import LoadGameForm from "../LoadGame/loadGameForm";
 
 export default function MainMenu() {
   const NEW_GAME_OPTION = "NEW";
@@ -27,7 +28,7 @@ export default function MainMenu() {
         </div>
       )}
       {menuOption && menuOption == NEW_GAME_OPTION && <NewGameForm />}
-      {menuOption && menuOption == LOAD_GAME_OPTION && <div>Load Game</div>}
+      {menuOption && menuOption == LOAD_GAME_OPTION && <LoadGameForm />}
       {menuOption && (
         <div className="menuOption" onClick={() => setMenuOption("")}>
           Back to Menu

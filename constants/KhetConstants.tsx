@@ -1,5 +1,6 @@
 export const newGameEndpoint = "http://localhost:8080/newGame";
 export const loadGameEndpoint = "http://localhost:8080/loadGame";
+export const savedGamesEndpoint = "http://localhost:8080/savedGames";
 
 export const PLAYER_GREY = "GREY";
 export const PLAYER_RED = "RED";

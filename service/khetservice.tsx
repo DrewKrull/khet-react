@@ -1,4 +1,20 @@
-import { newGameEndpoint } from "@/constants/KhetConstants";
+import { newGameEndpoint, savedGamesEndpoint } from "@/constants/KhetConstants";
+export async function getSavedGameData() {
+  try {
+    const response = await fetch(savedGamesEndpoint);
+
+    if (!response.ok) {
+      throw new Error("Response status: ${response.status}");
+    }
+
+    // Read in the actual data
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    if (error instanceof Error) console.error(error.message);
+  }
+}
+
 export async function getNewGameData(
   greyPlayerName,
   redPlayerName,
