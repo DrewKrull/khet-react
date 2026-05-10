@@ -13,7 +13,7 @@ export default function BoardCell({ cell }) {
   return (
     <div className="board-cell">
       <div
-        className={`board-cell-image-container ${entityOrientation && "entityOrientation-" + entityOrientation}`}
+        className={`board-cell-image-container ${entityOrientation && "entity-orientation-" + entityOrientation}`}
       >
         {entityImage && (
           <Image
