@@ -2,15 +2,23 @@
 import { useState } from "react";
 import NewGameForm from "../NewGame/newGameForm";
 import LoadGameForm from "../LoadGame/loadGameForm";
+import { FaRegUser } from "react-icons/fa";
+import LoginForm from "../Login/login";
 
 export default function MainMenu() {
   const NEW_GAME_OPTION = "NEW";
   const LOAD_GAME_OPTION = "LOAD";
-  const [menuOption, setMenuOption] = useState("");
+  const LOGIN_OPTION = "LOGIN";
+  const [menuOption, setMenuOption] = useState(LOGIN_OPTION);
 
   return (
     <div>
-      Welcome to Khet React Alpha
+      <div>
+        Welcome to Khet React Alpha
+        <div>
+          <FaRegUser onClick={() => setMenuOption(LOGIN_OPTION)} />
+        </div>
+      </div>
       {!menuOption && (
         <div className="menuOptions">
           <div
@@ -27,6 +35,7 @@ export default function MainMenu() {
           </div>
         </div>
       )}
+      {menuOption && menuOption == LOGIN_OPTION && <LoginForm />}
       {menuOption && menuOption == NEW_GAME_OPTION && <NewGameForm />}
       {menuOption && menuOption == LOAD_GAME_OPTION && <LoadGameForm />}
       {menuOption && (
