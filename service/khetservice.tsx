@@ -1,4 +1,8 @@
-import { newGameEndpoint, savedGamesEndpoint } from "@/constants/KhetConstants";
+import {
+  loginEndpoint,
+  newGameEndpoint,
+  savedGamesEndpoint,
+} from "@/constants/KhetConstants";
 export async function getSavedGameData() {
   try {
     const response = await fetch(savedGamesEndpoint);
@@ -41,6 +45,31 @@ export async function getNewGameData(
     // Read in the actual data
     const responseData = await response.json();
     return responseData.board;
+  } catch (error) {
+    if (error instanceof Error) console.error(error.message);
+  }
+}
+
+export async function login(userName, password) {
+  try {
+    const requestBody = {
+      userName,
+      password,
+    };
+    const requestBodyString = JSON.stringify(requestBody);
+    const response = await fetch(loginEndpoint, {
+      method: "POST",
+      body: requestBodyString,
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+    });
+
+    if (!response.ok) {
+      throw new Error("Response status: ${response.status}");
+    }
+
+    // Read in the actual data
+    const responseData = await response.json();
+    return "";
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }

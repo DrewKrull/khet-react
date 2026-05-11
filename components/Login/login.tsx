@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import crypto, { createHash } from "node:crypto";
+import { login } from "@/service/khetservice";
 
 export default function LoginForm() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  async function calculateMD5(text) {
+  async function calculateHash(text) {
     return createHash("sha256").update(text).digest("base64");
   }
 
@@ -15,8 +16,11 @@ export default function LoginForm() {
     e.preventDefault();
     // Hash the password immediately why not?
     let hashedPassword = "";
-    calculateMD5(password).then((result) => console.log(result));
-    // Attempt login
+    calculateHash(password).then((result) => {
+      hashedPassword = result;
+      // Attempt login
+      login(userName, hashedPassword);
+    });
   }
   return (
     <div>
