@@ -69,7 +69,8 @@ export async function login(userName, password) {
 
     // Read in the actual data
     const responseData = await response.json();
-    return "";
+
+    return responseData;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }

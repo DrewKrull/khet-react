@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import crypto, { createHash } from "node:crypto";
+import { useContext, useState } from "react";
+import { createHash } from "node:crypto";
 import { login } from "@/service/khetservice";
+import { KhetUserContext } from "@/context/khetUserContext";
 
 export default function LoginForm() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("drewKrull");
+  const [password, setPassword] = useState("tooManyCats");
+  const { user, setUser } = useContext(KhetUserContext);
 
   async function calculateHash(text) {
     return createHash("sha256").update(text).digest("base64");
@@ -18,10 +20,18 @@ export default function LoginForm() {
     let hashedPassword = "";
     calculateHash(password).then((result) => {
       hashedPassword = result;
-      // Attempt login
-      login(userName, hashedPassword);
+      // Attempt login and store in context
+      login(userName, hashedPassword).then((result) => {
+        setUser(result);
+      });
     });
   }
+
+  console.log(user);
+
+  // Hero bar if user is logged in
+  if (user) return <div>{user.userDisplayName}</div>;
+  // Default to displaying login form
   return (
     <div>
       <form onSubmit={handleLogin}>
