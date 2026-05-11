@@ -1,26 +1,31 @@
 "use client";
 
 import { getSavedGameData } from "@/service/khetservice";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function LoadGameForm() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [savedGameList, setSavedGameList] = useState([]);
-  useEffect(() => {
-    if (isLoading) {
-      getSavedGameData().then((savedGameData) =>
-        setSavedGameList(savedGameData),
-      );
-    }
-  }, []);
+  const {
+    isPending,
+    error,
+    data: savedGames,
+    isFetching,
+  } = useQuery({
+    queryKey: ["savedGames"],
+    queryFn: async () => {
+      return (await getSavedGameData()).savedGames;
+    },
+  });
+
+  if (isPending) return <div>Loading</div>;
+  if (error) return <div>Error</div>;
 
   return (
-    <div>
+    <div onClick={() => console.log(savedGames)}>
       Game List
       <div>
-        {savedGameList &&
-          savedGameList instanceof Array &&
-          savedGameList.map((savedGame) => <div key={savedGame.gameId}></div>)}
+        {savedGames.map((savedGame) => (
+          <div key={savedGame.gameID}>{savedGame.gameID}</div>
+        ))}
       </div>
     </div>
   );

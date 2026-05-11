@@ -1,18 +1,30 @@
+"use client";
+
 import Image from "next/image";
 import { IMAGE_PATH, IMAGE_KHET_HEADER } from "@/constants/KhetConstants";
 import MainMenu from "@/components/MainMenu/mainMenu";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 export default function Home() {
+  const queryClient = new QueryClient();
   const headerImage = IMAGE_PATH + IMAGE_KHET_HEADER;
 
   return (
-    <div className="khet-container">
-      <div className="khet-header">
-        <Image src={headerImage} width="749" height="50" alt="KHET Branding" />
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
+      <div className="khet-container">
+        <div className="khet-header">
+          <Image
+            src={headerImage}
+            width="749"
+            height="50"
+            alt="KHET Branding"
+          />
+        </div>
+        <div>
+          <MainMenu />
+        </div>
       </div>
-      <div>
-        <MainMenu />
-        {/* <NewGameForm /> */}
-      </div>
-    </div>
+    </QueryClientProvider>
   );
 }
