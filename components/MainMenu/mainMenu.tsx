@@ -5,20 +5,24 @@ import LoadGameForm from "../LoadGame/loadGameForm";
 import { FaRegUser } from "react-icons/fa";
 import LoginForm from "../Login/login";
 import { KhetUserProvider } from "@/context/khetUserContext";
+import HeroBar from "../HeroBar/heroBar";
 
 export default function MainMenu() {
+  const MAIN_MENU_OPTION = "";
   const NEW_GAME_OPTION = "NEW";
   const LOAD_GAME_OPTION = "LOAD";
   const LOGIN_OPTION = "LOGIN";
-  const [menuOption, setMenuOption] = useState("");
+  const [menuOption, setMenuOption] = useState(MAIN_MENU_OPTION);
+
   return (
     <KhetUserProvider>
       <div>
         <div className="menuHeader">
           <div className="menuHeading">Welcome to Khet React Alpha</div>
-          <div className="menuLinks">
-            <FaRegUser size={40} onClick={() => setMenuOption(LOGIN_OPTION)} />
-          </div>
+          <HeroBar
+            doLogin={() => setMenuOption(LOGIN_OPTION)}
+            doLogout={() => setMenuOption(MAIN_MENU_OPTION)}
+          />
         </div>
         {!menuOption && (
           <div className="menuOptions">
@@ -36,11 +40,16 @@ export default function MainMenu() {
             </div>
           </div>
         )}
-        {menuOption && menuOption == LOGIN_OPTION && <LoginForm />}
+        {menuOption && menuOption == LOGIN_OPTION && (
+          <LoginForm returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
+        )}
         {menuOption && menuOption == NEW_GAME_OPTION && <NewGameForm />}
         {menuOption && menuOption == LOAD_GAME_OPTION && <LoadGameForm />}
         {menuOption && (
-          <div className="menuOption" onClick={() => setMenuOption("")}>
+          <div
+            className="menuOption"
+            onClick={() => setMenuOption(MAIN_MENU_OPTION)}
+          >
             Back to Menu
           </div>
         )}

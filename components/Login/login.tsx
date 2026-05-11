@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 import { login } from "@/service/khetservice";
 import { KhetUserContext } from "@/context/khetUserContext";
 
-export default function LoginForm() {
+export default function LoginForm({ returnToMainMenu }) {
   const [userName, setUserName] = useState("drewKrull");
   const [password, setPassword] = useState("tooManyCats");
   const { user, setUser } = useContext(KhetUserContext);
@@ -23,15 +23,10 @@ export default function LoginForm() {
       // Attempt login and store in context
       login(userName, hashedPassword).then((result) => {
         setUser(result);
+        returnToMainMenu();
       });
     });
   }
-
-  console.log(user);
-
-  // Hero bar if user is logged in
-  if (user) return <div>{user.userDisplayName}</div>;
-  // Default to displaying login form
   return (
     <div>
       <form onSubmit={handleLogin}>

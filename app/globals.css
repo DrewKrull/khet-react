@@ -89,7 +89,21 @@ input {
   font-weight: bolder;
 }
 
-.menuLinks {
+.heroBar {
   align-content: center;
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroBar-username {
+  width: 50%;
+  font-size: 0.8em;
+}
+
+.heroBar-logout {
+  justify-content: right;
+  width: 50%;
+  display: flex;
 }
