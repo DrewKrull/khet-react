@@ -12,17 +12,14 @@ export default function Home() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
-      <div className="khet-container">
-        <div className="khet-header">
-          <Image
-            src={headerImage}
-            width="749"
-            height="50"
-            alt="KHET Branding"
-          />
-        </div>
-        <div>
-          <MainMenu />
+      <div className="page-container">
+        <div className="khet-container">
+          <div className="khet-header">
+            <Image src={headerImage} alt="KHET Branding" fill />
+          </div>
+          <div className="khet-application">
+            <MainMenu />
+          </div>
         </div>
       </div>
     </QueryClientProvider>

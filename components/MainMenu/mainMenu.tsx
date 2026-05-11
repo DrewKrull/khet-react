@@ -9,14 +9,14 @@ export default function MainMenu() {
   const NEW_GAME_OPTION = "NEW";
   const LOAD_GAME_OPTION = "LOAD";
   const LOGIN_OPTION = "LOGIN";
-  const [menuOption, setMenuOption] = useState(LOGIN_OPTION);
+  const [menuOption, setMenuOption] = useState("");
 
   return (
     <div>
-      <div>
-        Welcome to Khet React Alpha
-        <div>
-          <FaRegUser onClick={() => setMenuOption(LOGIN_OPTION)} />
+      <div className="menuHeader">
+        <div className="menuHeading">Welcome to Khet React Alpha</div>
+        <div className="menuLinks">
+          <FaRegUser size={40} onClick={() => setMenuOption(LOGIN_OPTION)} />
         </div>
       </div>
       {!menuOption && (
