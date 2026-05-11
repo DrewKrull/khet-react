@@ -24,7 +24,13 @@ export default function LoadGameForm() {
       Game List
       <div>
         {savedGames.map((savedGame) => (
-          <div key={savedGame.gameID}>{savedGame.gameID}</div>
+          <div key={savedGame.gameID}>
+            {savedGame.GreyPlayerName +
+              " vs. " +
+              savedGame.RedPlayerName +
+              ": started " +
+              savedGame.startDate}
+          </div>
         ))}
       </div>
     </div>
