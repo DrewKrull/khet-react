@@ -5,6 +5,7 @@ import { IMAGE_PATH, IMAGE_KHET_HEADER } from "@/constants/KhetConstants";
 import MainMenu from "@/components/MainMenu/mainMenu";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { KhetGameProvider } from "@/context/khetGameContext";
 export default function Home() {
   const queryClient = new QueryClient();
   const headerImage = IMAGE_PATH + IMAGE_KHET_HEADER;
@@ -18,7 +19,10 @@ export default function Home() {
             <Image src={headerImage} alt="KHET Branding" fill />
           </div>
           <div className="khet-application">
-            <MainMenu />
+            <KhetGameProvider>
+              <MainMenu />
+              <div>Khet Game</div>
+            </KhetGameProvider>
           </div>
         </div>
       </div>

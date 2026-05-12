@@ -1,4 +1,5 @@
 import {
+  loadGameEndpoint,
   loginEndpoint,
   newGameEndpoint,
   savedGamesEndpoint,
@@ -71,6 +72,24 @@ export async function login(userName, password) {
     const responseData = await response.json();
 
     return responseData;
+  } catch (error) {
+    if (error instanceof Error) console.error(error.message);
+  }
+}
+export async function loadGame(loadGameId) {
+  try {
+    const params = new URLSearchParams({ gameId: loadGameId });
+    const fetchUrl = loadGameEndpoint + "?" + params;
+    const response = await fetch(fetchUrl);
+
+    if (!response.ok) {
+      throw new Error("Response status: ${response.status}");
+    }
+
+    // Read in the actual data
+    const responseData = await response.json();
+    const responseValue = responseData["loadedGame"];
+    return responseValue;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }
