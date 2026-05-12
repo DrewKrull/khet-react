@@ -2,6 +2,7 @@
 
 import { getSavedGameData } from "@/service/khetservice";
 import { useQuery } from "@tanstack/react-query";
+import SavedGame from "./savedGame";
 
 export default function LoadGameForm() {
   const {
@@ -20,19 +21,14 @@ export default function LoadGameForm() {
   if (error) return <div>Error</div>;
 
   return (
-    <div onClick={() => console.log(savedGames)}>
-      Game List
-      <div>
-        {savedGames.map((savedGame) => (
-          <div key={savedGame.gameID}>
-            {savedGame.GreyPlayerName +
-              " vs. " +
-              savedGame.RedPlayerName +
-              ": started " +
-              savedGame.startDate}
-          </div>
-        ))}
-      </div>
+    <div>
+      {savedGames.map((savedGame) => (
+        <SavedGame
+          key={savedGame.gameID}
+          savedGame={savedGame}
+          selectSavedGame={(e) => alert("Load game " + e)}
+        />
+      ))}
     </div>
   );
 }
