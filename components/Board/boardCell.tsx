@@ -6,11 +6,13 @@ export default function BoardCell({ cell }) {
     cell.entity && cell.entity["@type"] && cell.entity["@type"];
   const entityPlayer = cell.entity && cell.entity.player && cell.entity.player;
   const entityImage = entityTypeToImage(entityType, entityPlayer);
-
   const entityOrientation = cell.entity && cell.entity.orientation;
 
   return (
     <div className="board-cell">
+      {cell && cell.onLaserPath && (
+        <div className="board-cell-laser-highlight"></div>
+      )}
       <div
         className={`board-cell-image-container ${entityOrientation && "entity-orientation-" + entityOrientation}`}
       >

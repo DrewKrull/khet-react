@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import SavedGame from "./savedGame";
 import { useContext } from "react";
 import { KhetGameContext } from "@/context/khetGameContext";
+import Board from "../Board/board";
 
 export default function LoadGameForm() {
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
@@ -34,16 +35,22 @@ export default function LoadGameForm() {
 
   return (
     <div>
-      {savedGames.map((savedGame) => (
-        <SavedGame
-          key={savedGame.gameID}
-          savedGame={savedGame}
-          selectSavedGame={(e) => selectGame(savedGame.gameID)}
-        />
-      ))}
-      <i>
-        <b>Currently loaded game: {currentGameID && currentGameID}</b>
-      </i>
+      {!currentGameID &&
+        savedGames.map((savedGame) => (
+          <SavedGame
+            key={savedGame.gameID}
+            savedGame={savedGame}
+            selectSavedGame={(e) => selectGame(savedGame.gameID)}
+          />
+        ))}
+      {currentGameID && (
+        <div>
+          <i>
+            <b>Currently loaded game: {currentGameID && currentGameID}</b>
+          </i>
+          <Board boardState={currentGame.boardState} />
+        </div>
+      )}
     </div>
   );
 }
