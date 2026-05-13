@@ -36,6 +36,11 @@ input {
   background-color: aqua;
 }
 
+.play-container {
+  display: grid;
+  grid-template-columns: auto 80% auto;
+}
+
 .board-container {
   max-width: fit-content;
 }
@@ -83,7 +88,6 @@ input {
   border-color: black;
   border-width: 1px;
   padding: 1em;
-  margin: 1em;
 }
 
 .boardData-summary {
@@ -156,4 +160,12 @@ input {
 .savedGame:hover {
   cursor: pointer;
   background-color: pink;
+}
+
+.actionBar {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 }

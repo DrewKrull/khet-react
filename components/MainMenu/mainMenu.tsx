@@ -60,9 +60,7 @@ export default function MainMenu() {
           <LoadGameForm gameLoaded={() => setMenuOption(PLAY_OPTION)} />
         )}
         {menuOption && menuOption == PLAY_OPTION && (
-          <div>
-            <PlayGame board={currentGame} currentGameID={currentGameID} />
-          </div>
+          <PlayGame board={currentGame} currentGameID={currentGameID} />
         )}
         {menuOption && (
           <div className="menuOption" onClick={() => backToMenu()}>
