@@ -31,7 +31,6 @@ export default function MainMenu() {
       <div>
         <div className="menuHeader">
           <div className="menuHeading">Welcome to Khet React Alpha</div>
-          <div>Menu option: {menuOption}</div>
           <HeroBar
             doLogin={() => setMenuOption(LOGIN_OPTION)}
             doLogout={() => setMenuOption(MAIN_MENU_OPTION)}
@@ -62,10 +61,7 @@ export default function MainMenu() {
         )}
         {menuOption && menuOption == PLAY_OPTION && (
           <div>
-            <Board
-              boardState={currentGame.boardState}
-              currentGameID={currentGameID}
-            />
+            <PlayGame board={currentGame} currentGameID={currentGameID} />
           </div>
         )}
         {menuOption && (

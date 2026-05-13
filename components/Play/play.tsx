@@ -1,10 +1,13 @@
 import Board from "../Board/board";
+import BoardData from "../Board/boardData";
+import ActionBar from "./actionBar";
 
 export default function PlayGame({ currentGameID, board }) {
   return (
     <div>
-      Play
-      <Board boardState={board} currentGameID={currentGameID} />
+      <BoardData board={board} currentGameID={currentGameID} />
+      <Board boardState={board.boardState} currentGameID={currentGameID} />
+      <ActionBar />
     </div>
   );
 }

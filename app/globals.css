@@ -75,6 +75,34 @@ input {
   height: 100%;
 }
 
+.boardData {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.boardData-summary {
+  width: 100%;
+  display: flex;
+}
+
+.boardData-details {
+  width: 100%;
+}
+
+.boardData-players {
+  width: 80%;
+}
+
+.boardData-expand {
+  width: 20%;
+}
+
 .menuOptions {
 }
 

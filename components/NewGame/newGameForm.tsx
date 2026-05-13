@@ -82,6 +82,9 @@ export default function NewGameForm() {
       </div>
 
       <div>
+        {
+          // Replace with move to play upon new game
+        }
         <Board boardState={newGameData.boardState} />
       </div>
     </div>
