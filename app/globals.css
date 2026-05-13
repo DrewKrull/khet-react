@@ -82,6 +82,7 @@ input {
   background-color: aqua;
   border-style: solid;
   border-width: 1px;
+  margin-top: 1em;
 }
 
 .menuOption:hover {

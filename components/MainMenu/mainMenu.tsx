@@ -2,23 +2,36 @@
 import { useContext, useState } from "react";
 import NewGameForm from "../NewGame/newGameForm";
 import LoadGameForm from "../LoadGame/loadGameForm";
-import { FaRegUser } from "react-icons/fa";
 import LoginForm from "../Login/login";
 import { KhetUserProvider } from "@/context/khetUserContext";
 import HeroBar from "../HeroBar/heroBar";
+import PlayGame from "../Play/play";
+import { KhetGameContext } from "@/context/khetGameContext";
+import Board from "../Board/board";
 
 export default function MainMenu() {
   const MAIN_MENU_OPTION = "";
   const NEW_GAME_OPTION = "NEW";
   const LOAD_GAME_OPTION = "LOAD";
   const LOGIN_OPTION = "LOGIN";
+  const PLAY_OPTION = "PLAY";
   const [menuOption, setMenuOption] = useState(MAIN_MENU_OPTION);
+
+  const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
+    useContext(KhetGameContext);
+
+  function backToMenu() {
+    setCurrentGame(null);
+    setCurrentGameID(null);
+    setMenuOption(MAIN_MENU_OPTION);
+  }
 
   return (
     <KhetUserProvider>
       <div>
         <div className="menuHeader">
           <div className="menuHeading">Welcome to Khet React Alpha</div>
+          <div>Menu option: {menuOption}</div>
           <HeroBar
             doLogin={() => setMenuOption(LOGIN_OPTION)}
             doLogout={() => setMenuOption(MAIN_MENU_OPTION)}
@@ -44,12 +57,19 @@ export default function MainMenu() {
           <LoginForm returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
         )}
         {menuOption && menuOption == NEW_GAME_OPTION && <NewGameForm />}
-        {menuOption && menuOption == LOAD_GAME_OPTION && <LoadGameForm />}
+        {menuOption && menuOption == LOAD_GAME_OPTION && (
+          <LoadGameForm gameLoaded={() => setMenuOption(PLAY_OPTION)} />
+        )}
+        {menuOption && menuOption == PLAY_OPTION && (
+          <div>
+            <Board
+              boardState={currentGame.boardState}
+              currentGameID={currentGameID}
+            />
+          </div>
+        )}
         {menuOption && (
-          <div
-            className="menuOption"
-            onClick={() => setMenuOption(MAIN_MENU_OPTION)}
-          >
+          <div className="menuOption" onClick={() => backToMenu()}>
             Back to Menu
           </div>
         )}

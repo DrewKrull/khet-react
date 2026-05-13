@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { KhetGameContext } from "@/context/khetGameContext";
 import Board from "../Board/board";
 
-export default function LoadGameForm() {
+export default function LoadGameForm({ gameLoaded }) {
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
 
@@ -15,6 +15,7 @@ export default function LoadGameForm() {
     const loadedGame = loadGame(loadGameId).then((loaded) => {
       setCurrentGameID(loadGameId);
       setCurrentGame(loaded);
+      gameLoaded();
     });
   }
 
@@ -43,14 +44,6 @@ export default function LoadGameForm() {
             selectSavedGame={(e) => selectGame(savedGame.gameID)}
           />
         ))}
-      {currentGameID && (
-        <div>
-          <i>
-            <b>Currently loaded game: {currentGameID && currentGameID}</b>
-          </i>
-          <Board boardState={currentGame.boardState} />
-        </div>
-      )}
     </div>
   );
 }

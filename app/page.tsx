@@ -21,7 +21,6 @@ export default function Home() {
           <div className="khet-application">
             <KhetGameProvider>
               <MainMenu />
-              <div>Khet Game</div>
             </KhetGameProvider>
           </div>
         </div>
