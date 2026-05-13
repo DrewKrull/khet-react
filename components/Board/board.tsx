@@ -1,6 +1,9 @@
 import BoardColumn from "./boardColumn";
 
 export default function Board({ currentGameID, boardState, selectCell }) {
+  function selectBoardCell(selectedCell) {
+    selectCell(selectedCell);
+  }
   return (
     <div className="board-container">
       <div className="board">
@@ -10,7 +13,7 @@ export default function Board({ currentGameID, boardState, selectCell }) {
             <BoardColumn
               key={column.columnNumber}
               column={column}
-              selectCell={selectCell}
+              selectCell={selectBoardCell}
             />
           ))}
       </div>

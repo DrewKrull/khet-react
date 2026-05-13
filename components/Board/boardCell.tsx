@@ -2,20 +2,24 @@ import entityTypeToImage from "@/util/Resolvers";
 import Image from "next/image";
 
 export default function BoardCell({ cell, selectCell }) {
+  const showLaser = false;
   const entityType =
     cell.entity && cell.entity["@type"] && cell.entity["@type"];
   const entityPlayer = cell.entity && cell.entity.player && cell.entity.player;
   const entityImage = entityTypeToImage(entityType, entityPlayer);
   const entityOrientation = cell.entity && cell.entity.orientation;
 
+  function select() {
+    setCellIsSelected(true);
+    selectCell(cell.columnNumber, cell.rowNumber, entityType);
+  }
+
   return (
-    <div
-      className="board-cell"
-      onClick={() => selectCell(cell.columnNumber, cell.rowNumber, entityType)}
-    >
-      {cell && cell.onLaserPath && (
+    <div className="board-cell" onClick={() => select()}>
+      {cell && cell.onLaserPath && showLaser && (
         <div className="board-cell-laser-highlight"></div>
       )}
+      {cellIsSelected && <div className="board-cell-selected"></div>}
       <div
         className={`board-cell-image-container ${entityOrientation && "entity-orientation-" + entityOrientation}`}
       >

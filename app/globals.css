@@ -53,6 +53,18 @@ input {
 .board-cell-image-container {
 }
 
+.board-cell-selected {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: pink;
+  opacity: 50%;
+  z-index: 20;
+  border-color: white;
+  border-width: 5px;
+  border-style: solid;
+}
+
 .board-cell-laser-highlight {
   width: 50px;
   height: 50px;
