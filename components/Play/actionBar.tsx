@@ -1,5 +1,6 @@
 import {
   ENTITY_TYPE_DJED,
+  ENTITY_TYPE_EMPTY,
   ENTITY_TYPE_PYRAMID,
 } from "@/constants/KhetConstants";
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
@@ -17,8 +18,10 @@ export default function ActionBar({ selectedCell }) {
           <>
             <FaArrowRotateRight size={50} />
             <FaArrowRotateLeft size={50} />
-            <IoIosMove size={50} />
           </>
+        )}
+        {selectedCell.entityType != ENTITY_TYPE_EMPTY && (
+          <IoIosMove size={50} />
         )}
       </div>
     </>
