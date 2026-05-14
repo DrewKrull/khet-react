@@ -5,8 +5,8 @@ import ActionBar from "./actionBar";
 
 export default function PlayGame({ currentGameID, board }) {
   const [selectedCell, setSelectedCell] = useState();
-  function selectCell(column, row, entityType) {
-    setSelectedCell({ column: column, row: row, entityType: entityType });
+  function selectCell(selectCell) {
+    setSelectedCell(selectCell);
   }
   return (
     <div className="play-container">

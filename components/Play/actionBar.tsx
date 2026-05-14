@@ -6,9 +6,10 @@ import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
 import { IoIosMove } from "react-icons/io";
 
 export default function ActionBar({ selectedCell }) {
+  console.log(selectedCell);
   return (
     <>
-      Column {selectedCell.column} Row {selectedCell.row} contains{" "}
+      Column {selectedCell.columnNumber} Row {selectedCell.rowNumber} contains{" "}
       {selectedCell.entityType}
       <div className="actionBar">
         {(selectedCell.entityType == ENTITY_TYPE_PYRAMID ||

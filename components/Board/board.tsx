@@ -1,7 +1,11 @@
+import { useState } from "react";
 import BoardColumn from "./boardColumn";
 
 export default function Board({ currentGameID, boardState, selectCell }) {
+  const [selectedCell, setSelectedCell] = useState();
+
   function selectBoardCell(selectedCell) {
+    setSelectedCell(selectedCell);
     selectCell(selectedCell);
   }
   return (
@@ -14,6 +18,7 @@ export default function Board({ currentGameID, boardState, selectCell }) {
               key={column.columnNumber}
               column={column}
               selectCell={selectBoardCell}
+              selectedCell={selectedCell}
             />
           ))}
       </div>
