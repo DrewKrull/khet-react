@@ -1,6 +1,7 @@
 import {
   loadGameEndpoint,
   loginEndpoint,
+  makeMoveEndpoint,
   newGameEndpoint,
   savedGamesEndpoint,
 } from "@/constants/KhetConstants";
@@ -90,6 +91,31 @@ export async function loadGame(loadGameId) {
     const responseData = await response.json();
     const responseValue = responseData["loadedGame"];
     return responseValue;
+  } catch (error) {
+    if (error instanceof Error) console.error(error.message);
+  }
+}
+export async function makeMove(gameId, move) {
+  try {
+    const requestBody = move;
+    console.log(requestBody + " for " + gameId);
+    const requestBodyString = JSON.stringify(requestBody);
+
+    const params = new URLSearchParams({ gameId: gameId });
+    const fetchUrl = makeMoveEndpoint + "?" + params;
+    const response = await fetch(fetchUrl, {
+      method: "POST",
+      body: requestBodyString,
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+    });
+
+    if (!response.ok) {
+      throw new Error("Response status: ${response.status}");
+    }
+
+    // Read in the actual data
+    const responseData = await response.json();
+    return responseData.board;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }

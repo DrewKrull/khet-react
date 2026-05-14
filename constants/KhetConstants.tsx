@@ -2,6 +2,7 @@ export const newGameEndpoint = "http://localhost:8080/newGame";
 export const loadGameEndpoint = "http://localhost:8080/loadGame";
 export const savedGamesEndpoint = "http://localhost:8080/savedGames";
 export const loginEndpoint = "http://localhost:8080/login";
+export const makeMoveEndpoint = "http://localhost:8080/move";
 
 export const PLAYER_GREY = "GREY";
 export const PLAYER_RED = "RED";
@@ -15,6 +16,11 @@ export const ENTITY_TYPE_OBELISK = "Obelisk";
 export const ENTITY_TYPE_PHAROAH = "Pharoah";
 export const ENTITY_TYPE_PYRAMID = "Pyramid";
 export const ENTITY_TYPE_EMPTY = "Empty";
+
+// Move options
+export const MOVE_ROTATE = "ROTATE";
+export const MOVE_ROTATE_COUNTER = "ROTATE_COUNTER";
+export const MOVE_MOVE = "MOVE";
 
 // Image base path
 export const IMAGE_PATH = "/images/";
