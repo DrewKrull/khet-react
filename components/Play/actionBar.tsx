@@ -13,11 +13,14 @@ import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
 import { IoIosMove } from "react-icons/io";
 
 export default function ActionBar({ selectedCell }) {
-  const { currentGameID } = useContext(KhetGameContext);
+  const { currentGameID, currentGame, setCurrentGame } =
+    useContext(KhetGameContext);
 
   function constructMove(moveOption) {
     const moveRequest = { moveType: moveOption, cellToMove: selectedCell };
-    makeMove(currentGameID, moveRequest);
+    makeMove(currentGameID, moveRequest).then((moveResult) =>
+      setCurrentGame(moveResult),
+    );
   }
   return (
     <>

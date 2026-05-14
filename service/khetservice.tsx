@@ -115,7 +115,8 @@ export async function makeMove(gameId, move) {
 
     // Read in the actual data
     const responseData = await response.json();
-    return responseData.board;
+    const responseValue = responseData["loadedGame"];
+    return responseValue;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }
