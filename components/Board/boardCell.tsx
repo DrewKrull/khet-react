@@ -1,4 +1,6 @@
-import entityTypeToImage from "@/util/Resolvers";
+import { IMAGE_LASER_STRAIGHT, IMAGE_PATH } from "@/constants/KhetConstants";
+import { entityToImage, laserDataToImage } from "@/util/Resolvers";
+
 import Image from "next/image";
 
 export default function BoardCell({
@@ -7,11 +9,12 @@ export default function BoardCell({
   selectedCell,
   selectedTarget,
 }) {
-  const showLaser = false;
+  const showLaser = true;
   const entityType =
     cell.entity && cell.entity["@type"] && cell.entity["@type"];
   const entityPlayer = cell.entity && cell.entity.player && cell.entity.player;
-  const entityImage = entityTypeToImage(entityType, entityPlayer);
+  const entityImage = entityToImage(entityType, entityPlayer);
+  const laserImage = laserDataToImage(cell);
   const entityOrientation = cell.entity && cell.entity.orientation;
 
   const cellIsSelected =
@@ -35,7 +38,15 @@ export default function BoardCell({
   return (
     <div className="board-cell" onClick={() => select()}>
       {cell && cell.onLaserPath && showLaser && (
-        <div className="board-cell-laser-highlight"></div>
+        <div className="board-cell-laser-highlight">
+          <Image
+            className="board-cell-image"
+            src={laserImage}
+            width="50"
+            height="50"
+            alt="Game piece image"
+          />
+        </div>
       )}
 
       {cellIsSelected && <div className="board-cell-selected" />}

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BoardColumn from "./boardColumn";
 
 export default function Board({
@@ -10,15 +9,10 @@ export default function Board({
   selectedCell,
   selectedTarget,
 }) {
-  // const [selectedCell, setSelectedCell] = useState();
-  // const [selectedTarget, setSelectedTarget] = useState();
-
   function selectBoardCell(cellSelection) {
     if (isSelectingTarget) {
-      // setSelectedTarget(cellSelection);
       selectTarget(cellSelection);
     } else {
-      // setSelectedCell(cellSelection);
       selectCell(cellSelection);
     }
   }

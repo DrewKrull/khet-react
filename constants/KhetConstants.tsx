@@ -10,6 +10,12 @@ export const PLAYER_RED = "RED";
 // Config options
 export const configurationOptions = [{ display: "Classic", value: "CLASSIC" }];
 
+// Board directions
+export const BOARD_DIR_SOUTH = "SOUTH";
+export const BOARD_DIR_NORTH = "NORTH";
+export const BOARD_DIR_EAST = "EAST";
+export const BOARD_DIR_WEST = "WEST";
+
 // Entity Types
 export const ENTITY_TYPE_DJED = "Djed";
 export const ENTITY_TYPE_OBELISK = "Obelisk";
@@ -35,3 +41,9 @@ export const IMAGE_DJED_RED = "redDjed.png";
 export const IMAGE_OBELISK_RED_DOUBLE = "redDoubleObelisk.png";
 export const IMAGE_PHAROAH_RED = "redPharoah.png";
 export const IMAGE_PYRAMID_RED = "redPyramid.png";
+export const IMAGE_LASER_HOR = "laser-horizontal.png";
+export const IMAGE_LASER_VER = "laser-vertical.png";
+export const IMAGE_LASER_BENT_SE = "laser-bent-SE.png";
+export const IMAGE_LASER_BENT_SW = "laser-bent-SW.png";
+export const IMAGE_LASER_BENT_NW = "laser-bent-NW.png";
+export const IMAGE_LASER_BENT_NE = "laser-bent-NE.png";
