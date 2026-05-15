@@ -57,9 +57,21 @@ input {
   width: 50px;
   height: 50px;
   position: absolute;
-  background-color: pink;
-  opacity: 50%;
+  background-color: rgb(2, 255, 57);
+  opacity: 40%;
   z-index: 20;
+  border-color: rgb(255, 255, 255);
+  border-width: 5px;
+  border-style: solid;
+}
+
+.board-cell-targeted {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+  opacity: 50%;
+  z-index: 10;
   border-color: white;
   border-width: 5px;
   border-style: solid;

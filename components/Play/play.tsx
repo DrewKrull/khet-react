@@ -5,8 +5,14 @@ import ActionBar from "./actionBar";
 
 export default function PlayGame({ currentGameID, board }) {
   const [selectedCell, setSelectedCell] = useState();
+  const [selectedTarget, setSelectedTarget] = useState();
+  const [isSelectingTarget, setIsSelectingTarget] = useState(false);
+
   function selectCell(selectCell) {
     setSelectedCell(selectCell);
+  }
+  function selectTarget(selectTarget) {
+    setSelectedTarget(selectTarget);
   }
   return (
     <div className="play-container">
@@ -17,8 +23,16 @@ export default function PlayGame({ currentGameID, board }) {
           boardState={board.boardState}
           currentGameID={currentGameID}
           selectCell={selectCell}
+          isSelectingTarget={isSelectingTarget}
+          selectTarget={selectTarget}
         />
-        {selectedCell && <ActionBar selectedCell={selectedCell} />}
+        {selectedCell && (
+          <ActionBar
+            selectedCell={selectedCell}
+            selectedTarget={selectedTarget}
+            initMove={() => setIsSelectingTarget(true)}
+          />
+        )}
       </div>
       <div></div>
     </div>

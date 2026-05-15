@@ -1,6 +1,11 @@
 import BoardCell from "./boardCell";
 
-export default function BoardColumn({ column, selectCell, selectedCell }) {
+export default function BoardColumn({
+  column,
+  selectCell,
+  selectedCell,
+  selectedTarget,
+}) {
   return (
     <div key={column.columnNumber}>
       {column.cells.map((cell) => (
@@ -9,6 +14,7 @@ export default function BoardColumn({ column, selectCell, selectedCell }) {
           key={cell.rowNumber}
           selectCell={selectCell}
           selectedCell={selectedCell}
+          selectedTarget={selectedTarget}
         />
       ))}
     </div>

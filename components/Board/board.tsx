@@ -1,13 +1,28 @@
 import { useState } from "react";
 import BoardColumn from "./boardColumn";
 
-export default function Board({ currentGameID, boardState, selectCell }) {
+export default function Board({
+  currentGameID,
+  boardState,
+  selectCell,
+  isSelectingTarget,
+  selectTarget,
+}) {
   const [selectedCell, setSelectedCell] = useState();
+  const [selectedTarget, setSelectedTarget] = useState();
 
-  function selectBoardCell(selectedCell) {
-    setSelectedCell(selectedCell);
-    selectCell(selectedCell);
+  function selectBoardCell(cellSelection) {
+    if (isSelectingTarget) {
+      console.log(cellSelection);
+
+      setSelectedTarget(cellSelection);
+      selectTarget(selectTarget);
+    } else {
+      setSelectedCell(cellSelection);
+      selectCell(selectedCell);
+    }
   }
+  console.log("Is target mode? " + isSelectingTarget);
   return (
     <div className="board-container">
       <div className="board">
@@ -19,6 +34,7 @@ export default function Board({ currentGameID, boardState, selectCell }) {
               column={column}
               selectCell={selectBoardCell}
               selectedCell={selectedCell}
+              selectedTarget={selectedTarget}
             />
           ))}
       </div>

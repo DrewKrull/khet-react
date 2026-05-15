@@ -8,13 +8,28 @@ import {
 } from "@/constants/KhetConstants";
 import { KhetGameContext } from "@/context/khetGameContext";
 import { makeMove } from "@/service/khetservice";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
 import { IoIosMove } from "react-icons/io";
 
-export default function ActionBar({ selectedCell }) {
+export default function ActionBar({ selectedCell, selectedTarget, initMove }) {
   const { currentGameID, currentGame, setCurrentGame } =
     useContext(KhetGameContext);
+
+  useEffect(() => {
+    const moveRequest = {
+      moveType: MOVE_MOVE,
+      cellToMove: selectedCell,
+      targetCell: selectedTarget,
+    };
+    // Don't target self
+    if (!selectedCell || !selectedTarget || selectedCell == selectedTarget)
+      return;
+
+    // makeMove(currentGameID, moveRequest).then((moveResult) =>
+    //   setCurrentGame(moveResult),
+    // );
+  }, [selectedCell, selectedTarget, currentGameID, setCurrentGame]);
 
   function constructMove(moveOption) {
     const moveRequest = { moveType: moveOption, cellToMove: selectedCell };
@@ -26,6 +41,15 @@ export default function ActionBar({ selectedCell }) {
     <>
       Column {selectedCell.columnNumber} Row {selectedCell.rowNumber} contains{" "}
       {selectedCell.entityType}
+      {selectedTarget && (
+        <>
+          <br />
+          <i>
+            Targeting column {selectedTarget.columnNumber} Row{" "}
+            {selectedTarget.rowNumber} contains {selectedTarget.entityType}
+          </i>
+        </>
+      )}
       <div className="actionBar">
         {(selectedCell.entityType == ENTITY_TYPE_PYRAMID ||
           selectedCell.entityType == ENTITY_TYPE_DJED) && (
@@ -41,7 +65,7 @@ export default function ActionBar({ selectedCell }) {
           </>
         )}
         {selectedCell.entityType != ENTITY_TYPE_EMPTY && (
-          <IoIosMove size={50} onClick={() => constructMove(MOVE_MOVE)} />
+          <IoIosMove size={50} onClick={() => initMove()} />
         )}
       </div>
     </>
