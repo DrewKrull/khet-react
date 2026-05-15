@@ -46,7 +46,7 @@ export function laserDataToImage(cell) {
   }
   // NW
   else if (
-    (cell.inHeading == BOARD_DIR_WEST && cell.outHeading == BOARD_DIR_NORTH) ||
+    (cell.inHeading == BOARD_DIR_EAST && cell.outHeading == BOARD_DIR_NORTH) ||
     (cell.inHeading == BOARD_DIR_SOUTH && cell.outHeading == BOARD_DIR_WEST)
   ) {
     imageFile += IMAGE_LASER_BENT_NW;
