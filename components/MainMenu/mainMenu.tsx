@@ -8,6 +8,7 @@ import HeroBar from "../HeroBar/heroBar";
 import PlayGame from "../Play/play";
 import { KhetGameContext } from "@/context/khetGameContext";
 import Board from "../Board/board";
+import { loadGame } from "@/service/khetservice";
 
 export default function MainMenu() {
   const MAIN_MENU_OPTION = "";
@@ -20,8 +21,13 @@ export default function MainMenu() {
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
 
-  function handleNewGame() {
-    setMenuOption(PLAY_OPTION);
+  function handleNewGame(gameID) {
+    // Load the new game then enter player mode
+    const loadedGame = loadGame(gameID).then((loaded) => {
+      setCurrentGameID(gameID);
+      setCurrentGame(loaded);
+      setMenuOption(PLAY_OPTION);
+    });
   }
 
   function backToMenu() {

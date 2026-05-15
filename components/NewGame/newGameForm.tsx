@@ -35,6 +35,7 @@ export default function NewGameForm({ onNewGame }) {
     getNewGameData(greyPlayerName, redPlayerName, selectedConfig).then(
       (newGameData) => {
         setNewGameData(newGameData);
+        onNewGame(newGameData.gameID);
       },
     );
   }
