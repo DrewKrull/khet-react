@@ -14,6 +14,13 @@ export default function PlayGame({ currentGameID, board }) {
   function selectTarget(cellSelection) {
     setSelectedTarget(cellSelection);
   }
+
+  function clearSelectionAndTarget() {
+    selectCell(null);
+    selectTarget(null);
+    setIsSelectingTarget(false);
+  }
+
   return (
     <div className="play-container">
       <div></div>
@@ -22,15 +29,18 @@ export default function PlayGame({ currentGameID, board }) {
         <Board
           boardState={board.boardState}
           currentGameID={currentGameID}
-          selectCell={selectCell}
           isSelectingTarget={isSelectingTarget}
+          selectCell={selectCell}
           selectTarget={selectTarget}
+          selectedCell={selectedCell}
+          selectedTarget={selectedTarget}
         />
         {selectedCell && (
           <ActionBar
             selectedCell={selectedCell}
             selectedTarget={selectedTarget}
             initMove={() => setIsSelectingTarget(true)}
+            clearSelectionAndTarget={clearSelectionAndTarget}
           />
         )}
       </div>

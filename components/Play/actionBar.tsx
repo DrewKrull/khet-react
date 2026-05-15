@@ -12,7 +12,12 @@ import { useContext, useEffect } from "react";
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
 import { IoIosMove } from "react-icons/io";
 
-export default function ActionBar({ selectedCell, selectedTarget, initMove }) {
+export default function ActionBar({
+  selectedCell,
+  selectedTarget,
+  initMove,
+  clearSelectionAndTarget,
+}) {
   const { currentGameID, currentGame, setCurrentGame } =
     useContext(KhetGameContext);
 
@@ -26,16 +31,19 @@ export default function ActionBar({ selectedCell, selectedTarget, initMove }) {
     if (!selectedCell || !selectedTarget || selectedCell == selectedTarget)
       return;
 
-    makeMove(currentGameID, moveRequest).then((moveResult) =>
-      setCurrentGame(moveResult),
-    );
+    clearSelectionAndTarget();
+    makeMove(currentGameID, moveRequest).then((moveResult) => {
+      setCurrentGame(moveResult);
+    });
   }, [selectedCell, selectedTarget, currentGameID, setCurrentGame]);
 
   function constructMove(moveOption) {
     const moveRequest = { moveType: moveOption, cellToMove: selectedCell };
-    makeMove(currentGameID, moveRequest).then((moveResult) =>
-      setCurrentGame(moveResult),
-    );
+    clearSelectionAndTarget();
+    makeMove(currentGameID, moveRequest).then((moveResult) => {
+      setCurrentGame(moveResult);
+      clearSelectionAndTarget();
+    });
   }
   return (
     <>

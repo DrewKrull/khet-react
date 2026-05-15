@@ -7,16 +7,18 @@ export default function Board({
   selectCell,
   isSelectingTarget,
   selectTarget,
+  selectedCell,
+  selectedTarget,
 }) {
-  const [selectedCell, setSelectedCell] = useState();
-  const [selectedTarget, setSelectedTarget] = useState();
+  // const [selectedCell, setSelectedCell] = useState();
+  // const [selectedTarget, setSelectedTarget] = useState();
 
   function selectBoardCell(cellSelection) {
     if (isSelectingTarget) {
-      setSelectedTarget(cellSelection);
+      // setSelectedTarget(cellSelection);
       selectTarget(cellSelection);
     } else {
-      setSelectedCell(cellSelection);
+      // setSelectedCell(cellSelection);
       selectCell(cellSelection);
     }
   }
