@@ -7,7 +7,6 @@ import { FaRegUser } from "react-icons/fa";
 
 export default function HeroBar({ doLogin, doLogout }) {
   const { user, setUser } = useContext(KhetUserContext);
-  console.log(user);
 
   function handleLogout() {
     setUser(null);

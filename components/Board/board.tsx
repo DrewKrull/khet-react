@@ -13,16 +13,13 @@ export default function Board({
 
   function selectBoardCell(cellSelection) {
     if (isSelectingTarget) {
-      console.log(cellSelection);
-
       setSelectedTarget(cellSelection);
-      selectTarget(selectTarget);
+      selectTarget(cellSelection);
     } else {
       setSelectedCell(cellSelection);
-      selectCell(selectedCell);
+      selectCell(cellSelection);
     }
   }
-  console.log("Is target mode? " + isSelectingTarget);
   return (
     <div className="board-container">
       <div className="board">

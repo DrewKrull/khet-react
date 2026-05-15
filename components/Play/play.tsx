@@ -8,11 +8,11 @@ export default function PlayGame({ currentGameID, board }) {
   const [selectedTarget, setSelectedTarget] = useState();
   const [isSelectingTarget, setIsSelectingTarget] = useState(false);
 
-  function selectCell(selectCell) {
-    setSelectedCell(selectCell);
+  function selectCell(cellSelection) {
+    setSelectedCell(cellSelection);
   }
-  function selectTarget(selectTarget) {
-    setSelectedTarget(selectTarget);
+  function selectTarget(cellSelection) {
+    setSelectedTarget(cellSelection);
   }
   return (
     <div className="play-container">
