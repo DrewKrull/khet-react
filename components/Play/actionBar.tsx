@@ -11,12 +11,14 @@ import { makeMove } from "@/service/khetservice";
 import { useContext, useEffect } from "react";
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
 import { IoIosMove } from "react-icons/io";
+import { MdCancel } from "react-icons/md";
 
 export default function ActionBar({
   selectedCell,
   selectedTarget,
   initMove,
-  clearSelectionAndTarget,
+  clearSelection,
+  clearTarget,
 }) {
   const { currentGameID, currentGame, setCurrentGame } =
     useContext(KhetGameContext);
@@ -31,7 +33,8 @@ export default function ActionBar({
     if (!selectedCell || !selectedTarget || selectedCell == selectedTarget)
       return;
 
-    clearSelectionAndTarget();
+    clearSelection();
+    clearTarget();
     makeMove(currentGameID, moveRequest).then((moveResult) => {
       setCurrentGame(moveResult);
     });
@@ -39,11 +42,20 @@ export default function ActionBar({
 
   function constructMove(moveOption) {
     const moveRequest = { moveType: moveOption, cellToMove: selectedCell };
-    clearSelectionAndTarget();
+    clearSelection();
     makeMove(currentGameID, moveRequest).then((moveResult) => {
       setCurrentGame(moveResult);
-      clearSelectionAndTarget();
     });
+  }
+
+  function handleCancel() {
+    if (selectedTarget) {
+      console.log("Clear target");
+      clearTarget();
+    } else {
+      console.log("Clear selection");
+      clearSelection();
+    }
   }
   return (
     <>
@@ -62,19 +74,21 @@ export default function ActionBar({
         {(selectedCell.entityType == ENTITY_TYPE_PYRAMID ||
           selectedCell.entityType == ENTITY_TYPE_DJED) && (
           <>
-            <FaArrowRotateRight
-              size={50}
-              onClick={() => constructMove(MOVE_ROTATE)}
-            />
+            {" "}
             <FaArrowRotateLeft
               size={50}
               onClick={() => constructMove(MOVE_ROTATE_COUNTER)}
+            />
+            <FaArrowRotateRight
+              size={50}
+              onClick={() => constructMove(MOVE_ROTATE)}
             />
           </>
         )}
         {selectedCell.entityType != ENTITY_TYPE_EMPTY && (
           <IoIosMove size={50} onClick={() => initMove()} />
         )}
+        <MdCancel size={50} onClick={handleCancel} />
       </div>
     </>
   );

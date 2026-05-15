@@ -15,8 +15,11 @@ export default function PlayGame({ currentGameID, board }) {
     setSelectedTarget(cellSelection);
   }
 
-  function clearSelectionAndTarget() {
+  function clearSelection() {
     selectCell(null);
+  }
+
+  function clearTarget() {
     selectTarget(null);
     setIsSelectingTarget(false);
   }
@@ -40,7 +43,8 @@ export default function PlayGame({ currentGameID, board }) {
             selectedCell={selectedCell}
             selectedTarget={selectedTarget}
             initMove={() => setIsSelectingTarget(true)}
-            clearSelectionAndTarget={clearSelectionAndTarget}
+            clearSelection={clearSelection}
+            clearTarget={clearTarget}
           />
         )}
       </div>

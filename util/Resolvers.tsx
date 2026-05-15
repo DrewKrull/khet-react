@@ -44,33 +44,33 @@ export function laserDataToImage(cell) {
   ) {
     imageFile += IMAGE_LASER_HOR;
   }
-  // NE
+  // NW
   else if (
-    (cell.inHeading == BOARD_DIR_SOUTH && cell.outHeading == BOARD_DIR_EAST) ||
-    (cell.inHeading == BOARD_DIR_WEST && cell.outHeading == BOARD_DIR_NORTH)
+    (cell.inHeading == BOARD_DIR_WEST && cell.outHeading == BOARD_DIR_NORTH) ||
+    (cell.inHeading == BOARD_DIR_SOUTH && cell.outHeading == BOARD_DIR_WEST)
   ) {
-    imageFile += IMAGE_LASER_BENT_NE;
+    imageFile += IMAGE_LASER_BENT_NW;
   }
-  // SOUTH WEST
+  // SW
   else if (
     (cell.inHeading == BOARD_DIR_EAST && cell.outHeading == BOARD_DIR_SOUTH) ||
     (cell.inHeading == BOARD_DIR_NORTH && cell.outHeading == BOARD_DIR_WEST)
   ) {
     imageFile += IMAGE_LASER_BENT_SW;
   }
-  // NORTH EAST
+  // SE
+  else if (
+    (cell.inHeading == BOARD_DIR_WEST && cell.outHeading == BOARD_DIR_SOUTH) ||
+    (cell.inHeading == BOARD_DIR_NORTH && cell.outHeading == BOARD_DIR_EAST)
+  ) {
+    imageFile += IMAGE_LASER_BENT_SE;
+  }
+  // NE
   else if (
     (cell.inHeading == BOARD_DIR_WEST && cell.outHeading == BOARD_DIR_NORTH) ||
     (cell.inHeading == BOARD_DIR_SOUTH && cell.outHeading == BOARD_DIR_EAST)
   ) {
     imageFile += IMAGE_LASER_BENT_NE;
-  }
-  // NORTH WEST
-  else if (
-    (cell.inHeading == BOARD_DIR_EAST && cell.outHeading == BOARD_DIR_NORTH) ||
-    (cell.inHeading == BOARD_DIR_SOUTH && cell.outHeading == BOARD_DIR_WEST)
-  ) {
-    imageFile += IMAGE_LASER_BENT_SE;
   }
   return imageFile;
 }
