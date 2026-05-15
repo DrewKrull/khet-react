@@ -20,6 +20,10 @@ export default function MainMenu() {
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
 
+  function handleNewGame() {
+    setMenuOption(PLAY_OPTION);
+  }
+
   function backToMenu() {
     setCurrentGame(null);
     setCurrentGameID(null);
@@ -55,7 +59,9 @@ export default function MainMenu() {
         {menuOption && menuOption == LOGIN_OPTION && (
           <LoginForm returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
         )}
-        {menuOption && menuOption == NEW_GAME_OPTION && <NewGameForm />}
+        {menuOption && menuOption == NEW_GAME_OPTION && (
+          <NewGameForm onNewGame={handleNewGame} />
+        )}
         {menuOption && menuOption == LOAD_GAME_OPTION && (
           <LoadGameForm gameLoaded={() => setMenuOption(PLAY_OPTION)} />
         )}

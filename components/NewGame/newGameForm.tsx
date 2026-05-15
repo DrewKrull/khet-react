@@ -10,7 +10,7 @@ import DisplayBoard from "@/components/Board/board";
 import Board from "@/components/Board/board";
 import { getNewGameData } from "@/service/khetservice";
 
-export default function NewGameForm() {
+export default function NewGameForm({ onNewGame }) {
   const [greyPlayerName, setGreyPlayerName] = useState("Grey Player Name");
   const [redPlayerName, setRedPlayerName] = useState("Red Player Name");
   const [selectedConfig, setSelectedConfig] = useState(
@@ -33,7 +33,9 @@ export default function NewGameForm() {
   function handleNewGameSubmit(e) {
     e.preventDefault();
     getNewGameData(greyPlayerName, redPlayerName, selectedConfig).then(
-      (newGameData) => setNewGameData(newGameData),
+      (newGameData) => {
+        setNewGameData(newGameData);
+      },
     );
   }
 
@@ -74,19 +76,6 @@ export default function NewGameForm() {
         </div>
         <input type="submit" />
       </form>
-
-      <div>
-        New Game Data:
-        <div>Grey Player Name : {newGameData.GreyPlayerName}</div>
-        <div>Red Player Name : {newGameData.RedPlayerName}</div>
-      </div>
-
-      <div>
-        {
-          // Replace with move to play upon new game
-        }
-        <Board boardState={newGameData.boardState} />
-      </div>
     </div>
   );
 }
