@@ -26,9 +26,9 @@ export default function ActionBar({ selectedCell, selectedTarget, initMove }) {
     if (!selectedCell || !selectedTarget || selectedCell == selectedTarget)
       return;
 
-    // makeMove(currentGameID, moveRequest).then((moveResult) =>
-    //   setCurrentGame(moveResult),
-    // );
+    makeMove(currentGameID, moveRequest).then((moveResult) =>
+      setCurrentGame(moveResult),
+    );
   }, [selectedCell, selectedTarget, currentGameID, setCurrentGame]);
 
   function constructMove(moveOption) {
