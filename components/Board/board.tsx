@@ -1,3 +1,4 @@
+import { ENTITY_TYPE_EMPTY } from "@/constants/KhetConstants";
 import BoardColumn from "./boardColumn";
 
 export default function Board({
@@ -8,12 +9,18 @@ export default function Board({
   selectTarget,
   selectedCell,
   selectedTarget,
+  currentTurn,
 }) {
   function selectBoardCell(cellSelection) {
     if (isSelectingTarget) {
-      selectTarget(cellSelection);
+      // Only allow targeting of empty cells
+      if (cellSelection.entityType == ENTITY_TYPE_EMPTY)
+        selectTarget(cellSelection);
     } else {
-      selectCell(cellSelection);
+      // Only allow selection of current turn's entity
+      if (cellSelection.entityPlayer == currentTurn) {
+        selectCell(cellSelection);
+      }
     }
   }
   return (

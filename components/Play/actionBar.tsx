@@ -50,10 +50,8 @@ export default function ActionBar({
 
   function handleCancel() {
     if (selectedTarget) {
-      console.log("Clear target");
       clearTarget();
     } else {
-      console.log("Clear selection");
       clearSelection();
     }
   }

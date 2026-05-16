@@ -28,10 +28,12 @@ export default function BoardCell({
     selectedTarget.rowNumber == cell.rowNumber;
 
   function select() {
+    //  Check current player before allowing selection
     selectCell({
       rowNumber: cell.rowNumber,
       columnNumber: cell.columnNumber,
       entityType: entityType,
+      entityPlayer: entityPlayer,
     });
   }
 

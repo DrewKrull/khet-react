@@ -30,6 +30,7 @@ export default function PlayGame({ currentGameID, board }) {
       <div>
         <BoardData board={board} currentGameID={currentGameID} />
         <Board
+          currentTurn={board.currentTurn}
           boardState={board.boardState}
           currentGameID={currentGameID}
           isSelectingTarget={isSelectingTarget}
