@@ -17,6 +17,7 @@ export default function PlayGame({ currentGameID, board }) {
 
   function clearSelection() {
     selectCell(null);
+    setIsSelectingTarget(false);
   }
 
   function clearTarget() {
