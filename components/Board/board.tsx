@@ -13,9 +13,15 @@ export default function Board({
 }) {
   function selectBoardCell(cellSelection) {
     if (isSelectingTarget) {
-      // Only allow targeting of empty cells
-      if (cellSelection.entityType == ENTITY_TYPE_EMPTY)
-        selectTarget(cellSelection);
+      // Only allow targeting of neighbors
+      if (
+        Math.abs(selectedCell.columnNumber - cellSelection.columnNumber) <= 1 &&
+        Math.abs(selectedCell.rowNumber - cellSelection.rowNumber) <= 1
+      ) {
+        // Only allow targeting of empty cells
+        if (cellSelection.entityType == ENTITY_TYPE_EMPTY)
+          selectTarget(cellSelection);
+      }
     } else {
       // Only allow selection of current turn's entity
       if (cellSelection.entityPlayer == currentTurn) {
