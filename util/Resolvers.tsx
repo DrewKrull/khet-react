@@ -18,7 +18,9 @@ import {
   IMAGE_LASER_HOR,
   IMAGE_LASER_VER,
   IMAGE_OBELISK_GREY_DOUBLE,
+  IMAGE_OBELISK_GREY_SINGLE,
   IMAGE_OBELISK_RED_DOUBLE,
+  IMAGE_OBELISK_RED_SINGLE,
   IMAGE_PATH,
   IMAGE_PHAROAH_GREY,
   IMAGE_PHAROAH_RED,
@@ -75,15 +77,20 @@ export function laserDataToImage(cell) {
   return imageFile;
 }
 
-export function entityToImage(entityType, entityPlayer) {
+export function entityToImage(entityType, entityPlayer, stackedEntity) {
   let imageFile = IMAGE_PATH;
 
   if (entityType == ENTITY_TYPE_DJED) {
     if (entityPlayer == PLAYER_RED) imageFile += IMAGE_DJED_RED;
     else imageFile += IMAGE_DJED_GREY;
   } else if (entityType == ENTITY_TYPE_OBELISK) {
-    if (entityPlayer == PLAYER_RED) imageFile += IMAGE_OBELISK_RED_DOUBLE;
-    else imageFile += IMAGE_OBELISK_GREY_DOUBLE;
+    if (stackedEntity) {
+      if (entityPlayer == PLAYER_RED) imageFile += IMAGE_OBELISK_RED_DOUBLE;
+      else imageFile += IMAGE_OBELISK_GREY_DOUBLE;
+    } else {
+      if (entityPlayer == PLAYER_RED) imageFile += IMAGE_OBELISK_RED_SINGLE;
+      else imageFile += IMAGE_OBELISK_GREY_SINGLE;
+    }
   } else if (entityType == ENTITY_TYPE_PHAROAH) {
     if (entityPlayer == PLAYER_RED) imageFile += IMAGE_PHAROAH_RED;
     else imageFile += IMAGE_PHAROAH_GREY;

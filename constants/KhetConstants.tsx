@@ -35,10 +35,13 @@ export const IMAGE_KHET_HEADER = "header.png";
 export const IMAGE_EMPTY_DARK_GREY = "darkGreyEmpty.png";
 export const IMAGE_DJED_GREY = "greyDjed.png";
 export const IMAGE_OBELISK_GREY_DOUBLE = "greyDoubleObelisk.png";
+
+export const IMAGE_OBELISK_GREY_SINGLE = "greySingleObelisk.png";
 export const IMAGE_PHAROAH_GREY = "greyPharoah.png";
 export const IMAGE_PYRAMID_GREY = "greyPyramid.png";
 export const IMAGE_DJED_RED = "redDjed.png";
 export const IMAGE_OBELISK_RED_DOUBLE = "redDoubleObelisk.png";
+export const IMAGE_OBELISK_RED_SINGLE = "redSingleObelisk.png";
 export const IMAGE_PHAROAH_RED = "redPharoah.png";
 export const IMAGE_PYRAMID_RED = "redPyramid.png";
 export const IMAGE_LASER_HOR = "laser-horizontal.png";
