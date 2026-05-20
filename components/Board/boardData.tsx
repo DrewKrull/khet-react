@@ -7,24 +7,31 @@ export default function BoardData({ board, currentGameID }) {
   return (
     <div className="boardData">
       <div className="boardData-summary">
-        <div className="boardData-players">
-          Current player:{" "}
-          {board.currentTurn == PLAYER_RED
-            ? board.RedPlayerName
-            : board.GreyPlayerName}{" "}
-          ({board.currentTurn}) vs.{" "}
-          {board.currentTurn == PLAYER_RED
-            ? board.GreyPlayerName
-            : board.RedPlayerName}
-        </div>
-        <div className="boardData-expand">
-          {!isExpanded && (
-            <MdExpandMore onClick={() => setIsExpanded(!isExpanded)} />
-          )}
-          {isExpanded && (
-            <MdExpandLess onClick={() => setIsExpanded(!isExpanded)} />
-          )}
-        </div>
+        {board.winner && (
+          <div className="boardData-winnerBanner">{board.winner} won!</div>
+        )}
+        {!board.winner && (
+          <>
+            <div className="boardData-players">
+              Current player:{" "}
+              {board.currentTurn == PLAYER_RED
+                ? board.RedPlayerName
+                : board.GreyPlayerName}{" "}
+              ({board.currentTurn}) vs.{" "}
+              {board.currentTurn == PLAYER_RED
+                ? board.GreyPlayerName
+                : board.RedPlayerName}
+            </div>
+            <div className="boardData-expand">
+              {!isExpanded && (
+                <MdExpandMore onClick={() => setIsExpanded(!isExpanded)} />
+              )}
+              {isExpanded && (
+                <MdExpandLess onClick={() => setIsExpanded(!isExpanded)} />
+              )}
+            </div>
+          </>
+        )}
       </div>
       {isExpanded && (
         <div className="boardData-details">Game ID:{currentGameID} </div>

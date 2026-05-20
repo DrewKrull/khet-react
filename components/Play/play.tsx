@@ -27,30 +27,27 @@ export default function PlayGame({ currentGameID, board }) {
 
   return (
     <div className="play-container">
-      <div></div>
-      <div>
-        <BoardData board={board} currentGameID={currentGameID} />
-        <Board
-          currentTurn={board.currentTurn}
-          boardState={board.boardState}
-          currentGameID={currentGameID}
-          isSelectingTarget={isSelectingTarget}
-          selectCell={selectCell}
-          selectTarget={selectTarget}
+      <BoardData board={board} currentGameID={currentGameID} />
+      <Board
+        currentTurn={board.currentTurn}
+        boardState={board.boardState}
+        currentGameID={currentGameID}
+        isSelectingTarget={isSelectingTarget}
+        selectCell={selectCell}
+        selectTarget={selectTarget}
+        selectedCell={selectedCell}
+        selectedTarget={selectedTarget}
+        winner={board.winner}
+      />
+      {selectedCell && (
+        <ActionBar
           selectedCell={selectedCell}
           selectedTarget={selectedTarget}
+          initMove={() => setIsSelectingTarget(true)}
+          clearSelection={clearSelection}
+          clearTarget={clearTarget}
         />
-        {selectedCell && (
-          <ActionBar
-            selectedCell={selectedCell}
-            selectedTarget={selectedTarget}
-            initMove={() => setIsSelectingTarget(true)}
-            clearSelection={clearSelection}
-            clearTarget={clearTarget}
-          />
-        )}
-      </div>
-      <div></div>
+      )}
     </div>
   );
 }

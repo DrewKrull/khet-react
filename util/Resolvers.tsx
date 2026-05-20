@@ -11,6 +11,8 @@ import {
   IMAGE_DJED_GREY,
   IMAGE_DJED_RED,
   IMAGE_EMPTY_DARK_GREY,
+  IMAGE_EMPTY_GREY,
+  IMAGE_EMPTY_RED,
   IMAGE_LASER_BENT_NE,
   IMAGE_LASER_BENT_NW,
   IMAGE_LASER_BENT_SE,
@@ -26,6 +28,7 @@ import {
   IMAGE_PHAROAH_RED,
   IMAGE_PYRAMID_GREY,
   IMAGE_PYRAMID_RED,
+  PLAYER_GREY,
   PLAYER_RED,
 } from "@/constants/KhetConstants";
 
@@ -77,9 +80,16 @@ export function laserDataToImage(cell) {
   return imageFile;
 }
 
-export function entityToImage(entityType, entityPlayer, stackedEntity) {
+export function entityToImage(
+  entityType,
+  entityPlayer,
+  stackedEntity,
+  cellPlayer,
+) {
   let imageFile = IMAGE_PATH;
-
+  if (cellPlayer) {
+    console.log("Has player" + cellPlayer);
+  }
   if (entityType == ENTITY_TYPE_DJED) {
     if (entityPlayer == PLAYER_RED) imageFile += IMAGE_DJED_RED;
     else imageFile += IMAGE_DJED_GREY;
@@ -98,7 +108,13 @@ export function entityToImage(entityType, entityPlayer, stackedEntity) {
     if (entityPlayer == PLAYER_RED) imageFile += IMAGE_PYRAMID_RED;
     else imageFile += IMAGE_PYRAMID_GREY;
   } else if (entityType == ENTITY_TYPE_EMPTY) {
-    imageFile += IMAGE_EMPTY_DARK_GREY;
+    if (cellPlayer == PLAYER_RED) {
+      imageFile += IMAGE_EMPTY_RED;
+    } else if (cellPlayer == PLAYER_GREY) {
+      imageFile += IMAGE_EMPTY_GREY;
+    } else {
+      imageFile += IMAGE_EMPTY_DARK_GREY;
+    }
   }
   return imageFile;
 }

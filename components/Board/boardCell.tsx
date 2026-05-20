@@ -14,7 +14,12 @@ export default function BoardCell({
     cell.entity && cell.entity["@type"] && cell.entity["@type"];
   const entityPlayer = cell.entity && cell.entity.player;
   const stackedEntity = cell.entity.stacked;
-  const entityImage = entityToImage(entityType, entityPlayer, stackedEntity);
+  const entityImage = entityToImage(
+    entityType,
+    entityPlayer,
+    stackedEntity,
+    cell.player,
+  );
   const laserImage = laserDataToImage(cell);
   const entityOrientation = cell.entity && cell.entity.orientation;
 

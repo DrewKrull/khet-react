@@ -32,6 +32,8 @@ export const MOVE_MOVE = "MOVE";
 export const IMAGE_PATH = "/images/";
 // Images
 export const IMAGE_KHET_HEADER = "header.png";
+export const IMAGE_EMPTY_RED = "redEmpty.png";
+export const IMAGE_EMPTY_GREY = "greyEmpty.png";
 export const IMAGE_EMPTY_DARK_GREY = "darkGreyEmpty.png";
 export const IMAGE_DJED_GREY = "greyDjed.png";
 export const IMAGE_OBELISK_GREY_DOUBLE = "greyDoubleObelisk.png";

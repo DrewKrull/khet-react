@@ -1,5 +1,6 @@
 import { ENTITY_TYPE_EMPTY } from "@/constants/KhetConstants";
 import BoardColumn from "./boardColumn";
+import WinnerOverlay from "./winnerOverlay";
 
 export default function Board({
   currentGameID,
@@ -10,22 +11,27 @@ export default function Board({
   selectedCell,
   selectedTarget,
   currentTurn,
+  winner,
 }) {
   function selectBoardCell(cellSelection) {
-    if (isSelectingTarget) {
-      // Only allow targeting of neighbors
-      if (
-        Math.abs(selectedCell.columnNumber - cellSelection.columnNumber) <= 1 &&
-        Math.abs(selectedCell.rowNumber - cellSelection.rowNumber) <= 1
-      ) {
-        // Only allow targeting of empty cells
-        if (cellSelection.entityType == ENTITY_TYPE_EMPTY)
-          selectTarget(cellSelection);
-      }
-    } else {
-      // Only allow selection of current turn's entity
-      if (cellSelection.entityPlayer == currentTurn) {
-        selectCell(cellSelection);
+    // We don't allow a gd thing if game is over
+    if (!winner) {
+      if (isSelectingTarget) {
+        // Only allow targeting of neighbors
+        if (
+          Math.abs(selectedCell.columnNumber - cellSelection.columnNumber) <=
+            1 &&
+          Math.abs(selectedCell.rowNumber - cellSelection.rowNumber) <= 1
+        ) {
+          // Only allow targeting of empty cells
+          if (cellSelection.entityType == ENTITY_TYPE_EMPTY)
+            selectTarget(cellSelection);
+        }
+      } else {
+        // Only allow selection of current turn's entity
+        if (cellSelection.entityPlayer == currentTurn) {
+          selectCell(cellSelection);
+        }
       }
     }
   }

@@ -38,11 +38,10 @@ input {
 
 .play-container {
   display: grid;
-  grid-template-columns: auto 80% auto;
+  grid-template-columns: 80%;
 }
 
 .board-container {
-  max-width: fit-content;
 }
 
 .board-cell {
@@ -86,6 +85,20 @@ input {
   z-index: 20;
 }
 
+.overlay-winner {
+  z-index: 100;
+  background-color: slategrey;
+  opacity: 70%;
+  position: absolute;
+}
+
+.overlay-text {
+  position: absolute;
+  background-color: red;
+  top: 50%;
+  left: 50%;
+}
+
 .entity-orientation-SW {
   transform: rotateZ(0deg);
 }
@@ -121,6 +134,12 @@ input {
 
 .boardData-details {
   width: 100%;
+}
+.boardData-winnerBanner {
+  width: 100%;
+  background-color: red;
+  font-weight: bold;
+  padding: 1em;
 }
 
 .boardData-players {
