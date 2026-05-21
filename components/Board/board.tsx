@@ -17,14 +17,23 @@ export default function Board({
     // We don't allow a gd thing if game is over
     if (!winner) {
       if (isSelectingTarget) {
+        let isValidTarget = false;
+        // Check target against valid targets
+        for (const validTarget of selectedCell.validTargets) {
+          if (
+            validTarget.rowNumber == cellSelection.rowNumber &&
+            validTarget.columnNumber == cellSelection.columnNumber
+          )
+            isValidTarget = true;
+        }
         // Only allow targeting of neighbors
         if (
           Math.abs(selectedCell.columnNumber - cellSelection.columnNumber) <=
             1 &&
           Math.abs(selectedCell.rowNumber - cellSelection.rowNumber) <= 1
         ) {
-          // Only allow targeting of empty cells
-          if (cellSelection.entityType == ENTITY_TYPE_EMPTY)
+          // Only allow targeting of empty cells with valid targets
+          if (cellSelection.entityType == ENTITY_TYPE_EMPTY && isValidTarget)
             selectTarget(cellSelection);
         }
       } else {

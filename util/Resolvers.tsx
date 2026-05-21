@@ -87,9 +87,6 @@ export function entityToImage(
   cellPlayer,
 ) {
   let imageFile = IMAGE_PATH;
-  if (cellPlayer) {
-    console.log("Has player" + cellPlayer);
-  }
   if (entityType == ENTITY_TYPE_DJED) {
     if (entityPlayer == PLAYER_RED) imageFile += IMAGE_DJED_RED;
     else imageFile += IMAGE_DJED_GREY;
