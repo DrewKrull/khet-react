@@ -22,6 +22,7 @@ export default function MainMenu() {
   const { user, setUser } = useContext(KhetUserContext);
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
+  const { currentTurnId, setCurrentTurnId } = useState("");
   const isOptionLockedDown =
     menuOption != REGISTER_OPTION && menuOption != LOGIN_OPTION && !user;
 
