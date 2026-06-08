@@ -45,7 +45,7 @@ export default function MainMenu() {
           <div className="menuHeading">Welcome to Khet React Alpha</div>
           <HeroBar
             doLogin={() => setMenuOption(LOGIN_OPTION)}
-            doLogout={() => setMenuOption(MAIN_MENU_OPTION)}
+            doLogout={() => setMenuOption(REGISTER_OPTION)}
           />
         </div>
         {!menuOption && (
@@ -66,7 +66,7 @@ export default function MainMenu() {
         )}
 
         {menuOption && menuOption == LOGIN_OPTION && (
-          <LoginForm returnToMainMenu={() => setMenuOption(REGISTER_OPTION)} />
+          <LoginForm returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
         )}
         {menuOption && menuOption == NEW_GAME_OPTION && (
           <NewGameForm onNewGame={handleNewGame} />

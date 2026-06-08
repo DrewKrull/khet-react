@@ -5,6 +5,7 @@ import { configurationOptions } from "@/constants/KhetConstants";
 import { getNewGameData } from "@/service/khetservice";
 import { KhetUserContext } from "@/context/khetUserContext";
 import OpponentList from "../OpponentList/opponentList";
+import { userInfo } from "os";
 
 export default function NewGameForm({ onNewGame }) {
   const { user, setUser } = useContext(KhetUserContext);
@@ -52,7 +53,11 @@ export default function NewGameForm({ onNewGame }) {
           selectedOpponent={selectedOpponent}
           setSelectedOpponent={setSelectedOpponent}
         />
-        <input type="submit" />
+        <input
+          type="submit"
+          className="formSubmit"
+          disabled={!user.userId || !selectedOpponent}
+        />
       </form>
     </div>
   );

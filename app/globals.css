@@ -227,3 +227,18 @@ input {
   background-color: aquamarine;
   cursor: pointer;
 }
+
+.formHeader {
+  font-weight: bolder;
+  padding: 1em;
+  font-size: 1.2em;
+}
+
+.formSubmit {
+  padding: 1em;
+}
+
+.formSubmit:disabled {
+  text-decoration: line-through;
+  cursor: not-allowed;
+}

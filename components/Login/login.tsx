@@ -29,6 +29,7 @@ export default function LoginForm({ returnToMainMenu }) {
   }
   return (
     <div>
+      <div className="formHeader">Log In</div>
       <form onSubmit={handleLogin}>
         <div className="form-row">
           <div>
@@ -49,7 +50,11 @@ export default function LoginForm({ returnToMainMenu }) {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <input type="submit" />
+          <input
+            type="submit"
+            className="formSubmit"
+            disabled={!userName || !password}
+          />
         </div>
       </form>
     </div>

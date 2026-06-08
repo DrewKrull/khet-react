@@ -55,7 +55,7 @@ export default function Register({ returnToMainMenu, navigateToLogin }) {
   }
   return (
     <div>
-      <h1>Create New User</h1>
+      <div className="formHeader">Create New User</div>
       <div>
         Already registered?{" "}
         <span className="logInTextLink" onClick={navigateToLogin}>
@@ -93,6 +93,7 @@ export default function Register({ returnToMainMenu, navigateToLogin }) {
           </div>
           <input
             type="submit"
+            className="formSubmit"
             disabled={!userName || !displayname! || !password}
           />
         </div>
