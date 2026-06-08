@@ -1,0 +1,82 @@
+"use client";
+
+import { KhetUserContext } from "@/context/khetUserContext";
+import { registerUser } from "@/service/khetservice";
+import { createHash } from "crypto";
+import { useContext, useState } from "react";
+
+export default function Register() {
+  const [userName, setUserName] = useState("drewKrull");
+  const [password, setPassword] = useState("tooManyCats");
+  const { user, setUser } = useContext(KhetUserContext);
+  const [displayname, setDisplayname] = useState("Drew Krull");
+
+  async function calculateHash(text) {
+    return createHash("sha256").update(text).digest("base64");
+  }
+
+  function handleRegister(e) {
+    e.preventDefault();
+    // Hash the password immediately why not?
+
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠶⠛⠛⠛⠛⠶⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠙⢷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣇⠀⠀⠀⠀⣠⡤⠤⣄⡀⠀⠀⢀⡤⠤⣬⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡀⠀⠀⡾⠁⠀⠀⠀⢻⡄⢠⡏⠀⣀⠀⢹⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⣧⠀⠛⠃⠀⣰⠃⠈⢷⣄⡋⢀⣼⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⢿⡄
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡆⠀⠈⠓⠦⠤⠞⠋⠀⠀⠀⠈⠙⢿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⡆⠀⢠⣶⡟⠈⣷
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠈⠙⠋⢁⠀⠀⠀⠀⠀⠀⣄⠹⣆⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⠟⠁⣾⠃⣴⣿⠁⠀⠀⢹
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⢠⣴⣤⣄⡞⠀⢠⠀⠀⣆⠀⠸⡀⢹⣆⠀⠀⠀⠀⠀⠀⢠⡿⠁⠀⢸⣯⣼⡇⠀⠀⠀⠀⣾
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠘⣿⡿⢿⡇⠀⢸⠀⠀⢿⠀⠀⣇⠀⢻⣆⠀⠀⠀⠀⠀⣿⠁⠀⠀⣸⣿⠁⠀⠀⠀⠀⢀⡿
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠟⣧⠀⠀⠉⢻⡀⠀⣼⠀⠀⣼⣄⠀⢹⣦⣴⠏⠀⠀⠀⠀⢸⡇⠀⠀⢰⠏⠀⠀⠀⠀⠀⠀⣼⠇
+    // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡶⠟⠁⠀⠘⢿⠦⢤⣀⣉⠉⠈⠣⠴⠃⣈⡩⣏⠙⢷⣄⡀⠀⠀⠀⢾⡇⠀⠀⠉⠀⠀⠀⠀⠀⢀⣾⠋⠀
+    // ⠀⠀⠀⠀⠀⠀⣠⣤⠾⣏⠁⠀⠀⠀⠀⠀⠈⠳⣄⡀⠉⠉⠉⠉⢻⠉⠁⣀⡿⠀⠀⠘⡟⠷⣤⣠⣿⣇⠀⠀⠀⠀⠀⠀⢀⣴⠟⠁⠀⠀
+    // ⠀⠀⠀⢀⣴⠟⠋⠀⠀⠘⣇⠀⠀⠀⠀⠀⠀⠀⠈⠻⣟⠒⠒⠒⠛⠚⠋⣹⠃⠀⠀⠀⢻⠀⠈⠙⣿⠉⠓⠲⠶⠶⠖⠚⠉⢹⣆⠀⠀⠀
+    // ⠀⢀⣴⠟⠁⠀⠀⠀⠀⠀⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠦⣄⠀⠀⣰⠏⠀⠀⠀⠀⢸⠀⠀⣠⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀
+    // ⣴⠟⠁⠀⠀⠀⠀⠀⠀⠀⣼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣹⠾⠃⠀⠀⠀⠀⠀⢸⠀⠘⢹⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀
+    let hashedPassword = "";
+    calculateHash(password).then((result) => {
+      hashedPassword = result;
+      // Attempt register and immediately login
+      registerUser(userName, hashedPassword, displayname);
+    });
+  }
+  return (
+    <div>
+      <form onSubmit={handleRegister}>
+        <div className="form-row">
+          <div>
+            <label>Username:</label>
+            <input
+              type="text"
+              name="userNameInput"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Display Name:</label>
+            <input
+              type="text"
+              name="displayNameInput"
+              value={displayname}
+              onChange={(e) => setDisplayname(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              name="passwordInput"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <input type="submit" />
+        </div>
+      </form>
+    </div>
+  );
+}

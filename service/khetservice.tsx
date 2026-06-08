@@ -3,6 +3,7 @@ import {
   loginEndpoint,
   makeMoveEndpoint,
   newGameEndpoint,
+  registerUserEndpoint,
   savedGamesEndpoint,
 } from "@/constants/KhetConstants";
 export async function getSavedGameData() {
@@ -117,6 +118,36 @@ export async function makeMove(gameId, move) {
     const responseData = await response.json();
     const responseValue = responseData["loadedGame"];
     return responseValue;
+  } catch (error) {
+    if (error instanceof Error) console.error(error.message);
+  }
+}
+export async function registerUser(
+  userName: string,
+  password: string,
+  displayname: string,
+) {
+  try {
+    const requestBody = {
+      userName: userName,
+      userPassword: password,
+      userDisplayName: displayname,
+    };
+    const requestBodyString = JSON.stringify(requestBody);
+    console.log(requestBodyString);
+    const response = await fetch(registerUserEndpoint, {
+      method: "POST",
+      body: requestBodyString,
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+    });
+
+    if (!response.ok) {
+      throw new Error("Response status: ${response.status}");
+    }
+
+    // // Read in the actual data
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }

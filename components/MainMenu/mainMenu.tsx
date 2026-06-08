@@ -9,6 +9,7 @@ import PlayGame from "../Play/play";
 import { KhetGameContext } from "@/context/khetGameContext";
 import Board from "../Board/board";
 import { loadGame } from "@/service/khetservice";
+import Register from "@/constants/register";
 
 export default function MainMenu() {
   const MAIN_MENU_OPTION = "";
@@ -16,7 +17,8 @@ export default function MainMenu() {
   const LOAD_GAME_OPTION = "LOAD";
   const LOGIN_OPTION = "LOGIN";
   const PLAY_OPTION = "PLAY";
-  const [menuOption, setMenuOption] = useState(MAIN_MENU_OPTION);
+  const REGISTER_OPTION = "REGISTER";
+  const [menuOption, setMenuOption] = useState(REGISTER_OPTION);
 
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
@@ -62,6 +64,7 @@ export default function MainMenu() {
             </div>
           </div>
         )}
+
         {menuOption && menuOption == LOGIN_OPTION && (
           <LoginForm returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
         )}
@@ -74,6 +77,7 @@ export default function MainMenu() {
         {menuOption && menuOption == PLAY_OPTION && (
           <PlayGame board={currentGame} currentGameID={currentGameID} />
         )}
+        {menuOption && menuOption == REGISTER_OPTION && <Register />}
         {menuOption && (
           <div className="menuOption" onClick={() => backToMenu()}>
             Back to Menu
