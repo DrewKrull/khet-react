@@ -9,7 +9,7 @@ import PlayGame from "../Play/play";
 import { KhetGameContext } from "@/context/khetGameContext";
 import Board from "../Board/board";
 import { loadGame } from "@/service/khetservice";
-import Register from "@/constants/register";
+import Register from "@/components/Register/register";
 
 export default function MainMenu() {
   const MAIN_MENU_OPTION = "";
@@ -77,7 +77,9 @@ export default function MainMenu() {
         {menuOption && menuOption == PLAY_OPTION && (
           <PlayGame board={currentGame} currentGameID={currentGameID} />
         )}
-        {menuOption && menuOption == REGISTER_OPTION && <Register />}
+        {menuOption && menuOption == REGISTER_OPTION && (
+          <Register returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
+        )}
         {menuOption && (
           <div className="menuOption" onClick={() => backToMenu()}>
             Back to Menu

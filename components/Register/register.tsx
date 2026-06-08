@@ -3,9 +3,10 @@
 import { KhetUserContext } from "@/context/khetUserContext";
 import { registerUser } from "@/service/khetservice";
 import { createHash } from "crypto";
+import { login } from "@/service/khetservice";
 import { useContext, useState } from "react";
 
-export default function Register() {
+export default function Register({ returnToMainMenu }) {
   const [userName, setUserName] = useState("drewKrull");
   const [password, setPassword] = useState("tooManyCats");
   const { user, setUser } = useContext(KhetUserContext);
@@ -40,7 +41,16 @@ export default function Register() {
     calculateHash(password).then((result) => {
       hashedPassword = result;
       // Attempt register and immediately login
-      registerUser(userName, hashedPassword, displayname);
+      registerUser(userName, hashedPassword, displayname).then(
+        (registerResult) => {
+          console.log("User registered, attempt login");
+          // Attempt login and store in context
+          login(userName, hashedPassword).then((loginResult) => {
+            setUser(loginResult);
+            returnToMainMenu();
+          });
+        },
+      );
     });
   }
   return (
