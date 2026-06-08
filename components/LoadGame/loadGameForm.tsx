@@ -9,7 +9,7 @@ import { KhetUserContext } from "@/context/khetUserContext";
 
 export default function LoadGameForm({ gameLoaded }) {
   const { user, setUser } = useContext(KhetUserContext);
-  const loggedInUser = user.userId;
+  const loggedInUser = user && user.userId;
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
 

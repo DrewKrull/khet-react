@@ -43,7 +43,9 @@ export default function MainMenu() {
 
   // HARD SHUT DOWN ANYONE TRYING TO LOAD THE MAIN MENU WHEN NOT LOGGED IN
   if (isOptionLockedDown) {
-    return <div>INVALID MENU OPTION</div>;
+    <>
+      return <div>INVALID MENU OPTION</div>
+    </>;
   }
   return (
     <div>

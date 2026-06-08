@@ -1,4 +1,4 @@
-export const serviceURL = "http://localhost:8080/";
+export const serviceURL = "http://192.168.86.32:8080/";
 export const newGameEndpoint = serviceURL + "newGame";
 export const loadGameEndpoint = serviceURL + "loadGame";
 export const savedGamesEndpoint = serviceURL + "savedGames";
