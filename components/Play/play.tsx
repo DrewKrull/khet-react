@@ -33,8 +33,6 @@ export default function PlayGame({ currentGameID, board }) {
   console.log(isActivePlayer);
   return (
     <>
-      <div>Current Player Id: {currentPlayerId}</div>
-      <div>User Id: {user.userId}</div>
       <div className="play-container">
         <BoardData board={board} currentGameID={currentGameID} />
         <Board

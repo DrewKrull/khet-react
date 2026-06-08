@@ -12,7 +12,7 @@ export default function BoardData({ board, currentGameID }) {
         )}
         {!board.winner && (
           <>
-            <div className="boardData-players">
+            {/* <div className="boardData-players">
               Current player:{" "}
               {board.currentTurn == PLAYER_RED
                 ? board.RedPlayerName
@@ -21,7 +21,7 @@ export default function BoardData({ board, currentGameID }) {
               {board.currentTurn == PLAYER_RED
                 ? board.GreyPlayerName
                 : board.RedPlayerName}
-            </div>
+            </div> */}
             <div className="boardData-expand">
               {!isExpanded && (
                 <MdExpandMore onClick={() => setIsExpanded(!isExpanded)} />
