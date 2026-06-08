@@ -48,7 +48,7 @@ export default function MainMenu() {
   return (
     <div>
       <div className="menuHeader">
-        <div className="menuHeading">Welcome to Khet React Alpha</div>
+        <div className="menuHeading">Welcome to Khet Alpha</div>
         <HeroBar
           doLogin={() => setMenuOption(LOGIN_OPTION)}
           doLogout={() => setMenuOption(REGISTER_OPTION)}

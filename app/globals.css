@@ -228,6 +228,12 @@ input {
   cursor: pointer;
 }
 
+.form-row {
+  display: grid;
+  width: 100%;
+  color: red;
+}
+
 .formHeader {
   font-weight: bolder;
   padding: 1em;

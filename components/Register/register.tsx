@@ -64,33 +64,33 @@ export default function Register({ returnToMainMenu, navigateToLogin }) {
       </div>
       <form onSubmit={handleRegister}>
         <div className="form-row">
-          <div>
-            <label>Username:</label>
-            <input
-              type="text"
-              name="userNameInput"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label>Display Name:</label>
-            <input
-              type="text"
-              name="displayNameInput"
-              value={displayname}
-              onChange={(e) => setDisplayname(e.target.value)}
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              name="passwordInput"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <label className="form-label">Username:</label>
+          <input
+            type="text"
+            name="userNameInput"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+        <div className="form-row">
+          <label>Display Name:</label>
+          <input
+            type="text"
+            name="displayNameInput"
+            value={displayname}
+            onChange={(e) => setDisplayname(e.target.value)}
+          />
+        </div>
+        <div className="form-row">
+          <label>Password:</label>
+          <input
+            type="password"
+            name="passwordInput"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="form-row">
           <input
             type="submit"
             className="formSubmit"

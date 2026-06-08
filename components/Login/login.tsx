@@ -32,24 +32,24 @@ export default function LoginForm({ returnToMainMenu }) {
       <div className="formHeader">Log In</div>
       <form onSubmit={handleLogin}>
         <div className="form-row">
-          <div>
-            <label>Username:</label>
-            <input
-              type="text"
-              name="userNameInput"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              name="passwordInput"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <label>Username:</label>
+          <input
+            type="text"
+            name="userNameInput"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+        <div className="form-row">
+          <label>Password:</label>
+          <input
+            type="password"
+            name="passwordInput"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="form-row">
           <input
             type="submit"
             className="formSubmit"
