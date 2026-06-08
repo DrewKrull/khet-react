@@ -162,7 +162,7 @@ export async function getOpponents(playerId) {
 
     // Read in the actual data
     const responseData = await response.json();
-    return responseData;
+    return responseData.opponents;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }
