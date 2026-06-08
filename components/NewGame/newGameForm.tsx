@@ -1,16 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import {
-  newGameEndpoint,
-  loadGameEndpoint,
-  configurationOptions,
-} from "@/constants/KhetConstants";
-import DisplayBoard from "@/components/Board/board";
-import Board from "@/components/Board/board";
+import { useContext, useState } from "react";
+import { configurationOptions } from "@/constants/KhetConstants";
 import { getNewGameData } from "@/service/khetservice";
+import { KhetUserContext } from "@/context/khetUserContext";
 
 export default function NewGameForm({ onNewGame }) {
+  const { user, setUser } = useContext(KhetUserContext);
+  console.log(user);
   const [greyPlayerName, setGreyPlayerName] = useState("Grey Player Name");
   const [redPlayerName, setRedPlayerName] = useState("Red Player Name");
   const [greyPlayerId, setGreyPlayerId] = useState(
