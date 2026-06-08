@@ -3,6 +3,7 @@ import {
   loginEndpoint,
   makeMoveEndpoint,
   newGameEndpoint,
+  opponentsEndpoint,
   registerUserEndpoint,
   savedGamesEndpoint,
 } from "@/constants/KhetConstants";
@@ -142,6 +143,24 @@ export async function registerUser(
     }
 
     // // Read in the actual data
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    if (error instanceof Error) console.error(error.message);
+  }
+}
+
+export async function getOpponents(playerId) {
+  try {
+    const params = new URLSearchParams({ playerId });
+    const fetchUrl = opponentsEndpoint + "?" + params;
+    const response = await fetch(fetchUrl);
+
+    if (!response.ok) {
+      throw new Error("Response status: ${response.status}");
+    }
+
+    // Read in the actual data
     const responseData = await response.json();
     return responseData;
   } catch (error) {

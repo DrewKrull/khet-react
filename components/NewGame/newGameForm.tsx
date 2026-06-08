@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { configurationOptions } from "@/constants/KhetConstants";
 import { getNewGameData } from "@/service/khetservice";
 import { KhetUserContext } from "@/context/khetUserContext";
+import OpponentList from "../OpponentList/opponentList";
 
 export default function NewGameForm({ onNewGame }) {
   const { user, setUser } = useContext(KhetUserContext);
@@ -43,6 +44,7 @@ export default function NewGameForm({ onNewGame }) {
             ))}
           </select>
         </div>
+        <OpponentList playerId={user.userId} />
         <input type="submit" />
       </form>
     </div>

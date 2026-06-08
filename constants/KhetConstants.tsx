@@ -5,6 +5,7 @@ export const savedGamesEndpoint = serviceURL + "savedGames";
 export const loginEndpoint = serviceURL + "login";
 export const makeMoveEndpoint = serviceURL + "move";
 export const registerUserEndpoint = serviceURL + "registerUser";
+export const opponentsEndpoint = serviceURL + "getOpponents";
 
 export const PLAYER_GREY = "GREY";
 export const PLAYER_RED = "RED";
