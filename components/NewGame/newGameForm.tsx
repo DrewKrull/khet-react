@@ -48,16 +48,20 @@ export default function NewGameForm({ onNewGame }) {
             ))}
           </select>
         </div>
-        <OpponentList
-          playerId={user.userId}
-          selectedOpponent={selectedOpponent}
-          setSelectedOpponent={setSelectedOpponent}
-        />
-        <input
-          type="submit"
-          className="formSubmit"
-          disabled={!user.userId || !selectedOpponent}
-        />
+        <div className="form-row">
+          <OpponentList
+            playerId={user.userId}
+            selectedOpponent={selectedOpponent}
+            setSelectedOpponent={setSelectedOpponent}
+          />
+        </div>
+        <div className="form-row">
+          <input
+            type="submit"
+            className="formSubmit"
+            disabled={!user.userId || !selectedOpponent}
+          />
+        </div>
       </form>
     </div>
   );

@@ -26,8 +26,7 @@ export default function OpponentList({
   });
 
   return (
-    <div>
-      Invite Player:
+    <>
       {opponentList && (
         <select
           name="selectedConfigInput"
@@ -44,6 +43,6 @@ export default function OpponentList({
           ))}
         </select>
       )}
-    </div>
+    </>
   );
 }
