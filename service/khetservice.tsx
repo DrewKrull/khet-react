@@ -27,6 +27,7 @@ export async function getNewGameData(greyPlayerId, selectedConfig) {
     const requestBody = {
       greyPlayerId,
       selectedConfig,
+      redPlayerId: "9b1f8004-d91d-4901-b879-862a85ccfbb9",
     };
     const requestBodyString = JSON.stringify(requestBody);
 
