@@ -2,8 +2,17 @@
 
 import { getOpponents } from "@/service/khetservice";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
-export default function OpponentList({ playerId }) {
+export default function OpponentList({
+  playerId,
+  selectedOpponent,
+  setSelectedOpponent,
+}) {
+  function handleSelectedOpponentChange(e) {
+    setSelectedOpponent(e.target.value);
+  }
+
   const {
     isPending,
     error,
@@ -15,12 +24,19 @@ export default function OpponentList({ playerId }) {
       return await getOpponents(playerId);
     },
   });
-  console.log(opponentList);
+
   return (
     <div>
-      Valid opponents for {playerId}:{opponentList && <div>Lisr exisr</div>}
+      Invite Player:
       {opponentList && (
-        <select name="selectedConfigInput">
+        <select
+          name="selectedConfigInput"
+          value={selectedOpponent}
+          onChange={handleSelectedOpponentChange}
+        >
+          <option value="" disabled hidden>
+            Select opponent
+          </option>
           {opponentList.map((opp) => (
             <option key={opp.userId} value={opp.userId}>
               {opp.userDisplay}

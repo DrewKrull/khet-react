@@ -23,12 +23,16 @@ export async function getSavedGameData() {
   }
 }
 
-export async function getNewGameData(greyPlayerId, selectedConfig) {
+export async function getNewGameData(
+  greyPlayerId,
+  redPlayerId,
+  selectedConfig,
+) {
   try {
     const requestBody = {
       greyPlayerId,
+      redPlayerId,
       selectedConfig,
-      redPlayerId: "9b1f8004-d91d-4901-b879-862a85ccfbb9",
     };
     const requestBodyString = JSON.stringify(requestBody);
 

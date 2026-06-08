@@ -8,8 +8,9 @@ import OpponentList from "../OpponentList/opponentList";
 
 export default function NewGameForm({ onNewGame }) {
   const { user, setUser } = useContext(KhetUserContext);
-
   const greyPlayerId = user.userId;
+  const [selectedOpponent, setSelectedOpponent] = useState("");
+
   const [selectedConfig, setSelectedConfig] = useState(
     configurationOptions[0].value,
   );
@@ -21,10 +22,12 @@ export default function NewGameForm({ onNewGame }) {
 
   function handleNewGameSubmit(e) {
     e.preventDefault();
-    getNewGameData(greyPlayerId, selectedConfig).then((newGameData) => {
-      setNewGameData(newGameData);
-      onNewGame(newGameData.gameID);
-    });
+    getNewGameData(greyPlayerId, selectedOpponent, selectedConfig).then(
+      (newGameData) => {
+        setNewGameData(newGameData);
+        onNewGame(newGameData.gameID);
+      },
+    );
   }
 
   return (
@@ -44,7 +47,11 @@ export default function NewGameForm({ onNewGame }) {
             ))}
           </select>
         </div>
-        <OpponentList playerId={user.userId} />
+        <OpponentList
+          playerId={user.userId}
+          selectedOpponent={selectedOpponent}
+          setSelectedOpponent={setSelectedOpponent}
+        />
         <input type="submit" />
       </form>
     </div>
