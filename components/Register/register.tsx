@@ -43,12 +43,13 @@ export default function Register({ returnToMainMenu, navigateToLogin }) {
       // Attempt register and immediately login
       registerUser(userName, hashedPassword, displayname).then(
         (registerResult) => {
-          console.log("User registered, attempt login");
-          // Attempt login and store in context
-          login(userName, hashedPassword).then((loginResult) => {
-            setUser(loginResult);
-            returnToMainMenu();
-          });
+          if (registerResult) {
+            // Attempt login and store in context
+            login(userName, hashedPassword).then((loginResult) => {
+              setUser(loginResult);
+              returnToMainMenu();
+            });
+          }
         },
       );
     });

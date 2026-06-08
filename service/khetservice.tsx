@@ -130,6 +130,7 @@ export async function registerUser(
   password: string,
   displayname: string,
 ) {
+  let responseData = null;
   try {
     const requestBody = {
       userName: userName,
@@ -137,7 +138,6 @@ export async function registerUser(
       userDisplayName: displayname,
     };
     const requestBodyString = JSON.stringify(requestBody);
-    console.log(requestBodyString);
     const response = await fetch(registerUserEndpoint, {
       method: "POST",
       body: requestBodyString,
@@ -145,11 +145,12 @@ export async function registerUser(
     });
 
     if (!response.ok) {
-      throw new Error("Response status: ${response.status}");
+      if (response.status == 409) console.log("User already exists");
+      else throw new Error("Response status: " + response.status);
+    } else {
+      // Only process data if registration succeeded
+      responseData = await response.json();
     }
-
-    // // Read in the actual data
-    const responseData = await response.json();
     return responseData;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
