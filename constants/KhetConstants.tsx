@@ -1,8 +1,9 @@
-export const newGameEndpoint = "http://localhost:8080/newGame";
-export const loadGameEndpoint = "http://localhost:8080/loadGame";
-export const savedGamesEndpoint = "http://localhost:8080/savedGames";
-export const loginEndpoint = "http://localhost:8080/login";
-export const makeMoveEndpoint = "http://localhost:8080/move";
+export const serviceURL = "http://localhost:8080/";
+export const newGameEndpoint = serviceURL + "newGame";
+export const loadGameEndpoint = serviceURL + "loadGame";
+export const savedGamesEndpoint = serviceURL + "savedGames";
+export const loginEndpoint = serviceURL + "login";
+export const makeMoveEndpoint = serviceURL + "move";
 
 export const PLAYER_GREY = "GREY";
 export const PLAYER_RED = "RED";
