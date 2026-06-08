@@ -7,10 +7,10 @@ import { login } from "@/service/khetservice";
 import { useContext, useState } from "react";
 
 export default function Register({ returnToMainMenu }) {
-  const [userName, setUserName] = useState("drewKrull");
-  const [password, setPassword] = useState("tooManyCats");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [displayname, setDisplayname] = useState("");
   const { user, setUser } = useContext(KhetUserContext);
-  const [displayname, setDisplayname] = useState("Drew Krull");
 
   async function calculateHash(text) {
     return createHash("sha256").update(text).digest("base64");
@@ -55,6 +55,7 @@ export default function Register({ returnToMainMenu }) {
   }
   return (
     <div>
+      <h1>Create New User</h1>
       <form onSubmit={handleRegister}>
         <div className="form-row">
           <div>
@@ -84,7 +85,10 @@ export default function Register({ returnToMainMenu }) {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <input type="submit" />
+          <input
+            type="submit"
+            disabled={!userName || !displayname! || !password}
+          />
         </div>
       </form>
     </div>
