@@ -3,11 +3,10 @@ import { useContext, useState } from "react";
 import NewGameForm from "../NewGame/newGameForm";
 import LoadGameForm from "../LoadGame/loadGameForm";
 import LoginForm from "../Login/login";
-import { KhetUserProvider } from "@/context/khetUserContext";
+import { KhetUserContext, KhetUserProvider } from "@/context/khetUserContext";
 import HeroBar from "../HeroBar/heroBar";
 import PlayGame from "../Play/play";
 import { KhetGameContext } from "@/context/khetGameContext";
-import Board from "../Board/board";
 import { loadGame } from "@/service/khetservice";
 import Register from "@/components/Register/register";
 
@@ -20,6 +19,7 @@ export default function MainMenu() {
   const REGISTER_OPTION = "REGISTER";
   const [menuOption, setMenuOption] = useState(REGISTER_OPTION);
 
+  const { user, setUser } = useContext(KhetUserContext);
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
 
@@ -38,6 +38,8 @@ export default function MainMenu() {
     setMenuOption(MAIN_MENU_OPTION);
   }
 
+  // HARD SHUT DOWN ANYONE TRYING TO LOAD THE MAIN MENU WHEN NOT LOGGED IN
+  if (!user) alert("TEST");
   return (
     <KhetUserProvider>
       <div>
@@ -64,7 +66,6 @@ export default function MainMenu() {
             </div>
           </div>
         )}
-
         {menuOption && menuOption == LOGIN_OPTION && (
           <LoginForm returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
         )}
@@ -82,6 +83,11 @@ export default function MainMenu() {
             returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)}
             navigateToLogin={() => setMenuOption(LOGIN_OPTION)}
           />
+        )}{" "}
+        {menuOption && (
+          <div className="menuOption" onClick={() => backToMenu()}>
+            Back to Menu
+          </div>
         )}
       </div>
     </KhetUserProvider>
