@@ -7,12 +7,11 @@ import { KhetUserContext } from "@/context/khetUserContext";
 
 export default function NewGameForm({ onNewGame }) {
   const { user, setUser } = useContext(KhetUserContext);
-  console.log(user);
+
   const [greyPlayerName, setGreyPlayerName] = useState("Grey Player Name");
   const [redPlayerName, setRedPlayerName] = useState("Red Player Name");
-  const [greyPlayerId, setGreyPlayerId] = useState(
-    "b43c8fea-b2a7-4eb0-80b3-a544b02071f9",
-  );
+  const greyPlayerId = user.userId;
+  console.log(greyPlayerId);
   const [selectedConfig, setSelectedConfig] = useState(
     configurationOptions[0].value,
   );
