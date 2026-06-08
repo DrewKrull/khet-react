@@ -6,7 +6,7 @@ import { createHash } from "crypto";
 import { login } from "@/service/khetservice";
 import { useContext, useState } from "react";
 
-export default function Register({ returnToMainMenu }) {
+export default function Register({ returnToMainMenu, navigateToLogin }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [displayname, setDisplayname] = useState("");
@@ -56,6 +56,12 @@ export default function Register({ returnToMainMenu }) {
   return (
     <div>
       <h1>Create New User</h1>
+      <div>
+        Already registered?{" "}
+        <span className="logInTextLink" onClick={navigateToLogin}>
+          Login
+        </span>
+      </div>
       <form onSubmit={handleRegister}>
         <div className="form-row">
           <div>

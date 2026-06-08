@@ -217,3 +217,13 @@ input {
   align-items: center;
   justify-content: center;
 }
+
+.logInTextLink {
+  font-weight: bold;
+  padding: 0.2em;
+}
+
+.logInTextLink:hover {
+  background-color: aquamarine;
+  cursor: pointer;
+}

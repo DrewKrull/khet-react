@@ -66,7 +66,7 @@ export default function MainMenu() {
         )}
 
         {menuOption && menuOption == LOGIN_OPTION && (
-          <LoginForm returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
+          <LoginForm returnToMainMenu={() => setMenuOption(REGISTER_OPTION)} />
         )}
         {menuOption && menuOption == NEW_GAME_OPTION && (
           <NewGameForm onNewGame={handleNewGame} />
@@ -78,12 +78,10 @@ export default function MainMenu() {
           <PlayGame board={currentGame} currentGameID={currentGameID} />
         )}
         {menuOption && menuOption == REGISTER_OPTION && (
-          <Register returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
-        )}
-        {menuOption && (
-          <div className="menuOption" onClick={() => backToMenu()}>
-            Back to Menu
-          </div>
+          <Register
+            returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)}
+            navigateToLogin={() => setMenuOption(LOGIN_OPTION)}
+          />
         )}
       </div>
     </KhetUserProvider>
