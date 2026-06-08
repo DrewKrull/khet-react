@@ -6,8 +6,8 @@ import { login } from "@/service/khetservice";
 import { KhetUserContext } from "@/context/khetUserContext";
 
 export default function LoginForm({ returnToMainMenu }) {
-  const [userName, setUserName] = useState("drewKrull");
-  const [password, setPassword] = useState("tooManyCats");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const { user, setUser } = useContext(KhetUserContext);
 
   async function calculateHash(text) {
