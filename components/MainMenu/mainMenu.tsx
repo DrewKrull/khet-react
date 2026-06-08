@@ -40,12 +40,6 @@ export default function MainMenu() {
     setMenuOption(MAIN_MENU_OPTION);
   }
 
-  console.log("Option: " + menuOption);
-  console.log("Null User :" + !user);
-  console.log("First cond: " + (menuOption != REGISTER_OPTION));
-  console.log("Second cond: " + (menuOption != LOGIN_OPTION));
-  console.log(isOptionLockedDown);
-
   // HARD SHUT DOWN ANYONE TRYING TO LOAD THE MAIN MENU WHEN NOT LOGGED IN
   if (isOptionLockedDown) {
     return <div>INVALID MENU OPTION</div>;
