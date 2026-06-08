@@ -33,6 +33,7 @@ export default function NewGameForm({ onNewGame }) {
 
   return (
     <div>
+      <div className="formHeader">Create New Game</div>
       <form onSubmit={handleNewGameSubmit}>
         <div className="form-row">
           <label>Configuration:</label>
