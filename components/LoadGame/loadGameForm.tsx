@@ -5,8 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import SavedGame from "./savedGame";
 import { useContext } from "react";
 import { KhetGameContext } from "@/context/khetGameContext";
+import { KhetUserContext } from "@/context/khetUserContext";
 
 export default function LoadGameForm({ gameLoaded }) {
+  const { user, setUser } = useContext(KhetUserContext);
+  const loggedInUser = user.userId;
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
 
@@ -26,7 +29,7 @@ export default function LoadGameForm({ gameLoaded }) {
   } = useQuery({
     queryKey: ["savedGames"],
     queryFn: async () => {
-      return (await getSavedGameData()).savedGames;
+      return (await getSavedGameData(loggedInUser)).savedGames;
     },
   });
 

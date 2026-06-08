@@ -7,9 +7,11 @@ import {
   registerUserEndpoint,
   savedGamesEndpoint,
 } from "@/constants/KhetConstants";
-export async function getSavedGameData() {
+export async function getSavedGameData(playerId) {
   try {
-    const response = await fetch(savedGamesEndpoint);
+    const params = new URLSearchParams({ playerId });
+    const fetchUrl = savedGamesEndpoint + "?" + params;
+    const response = await fetch(fetchUrl);
 
     if (!response.ok) {
       throw new Error("Response status: ${response.status}");
