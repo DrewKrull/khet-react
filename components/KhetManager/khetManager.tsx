@@ -15,7 +15,9 @@ import { login } from "@/service/khetservice";
 export default function KhetManager() {
   // Get any stored user info from localstorage
   const localllyStoredUser =
-    localStorage && localStorage.getItem("currentUserLoginInsecure");
+    localStorage &&
+    localStorage != null &&
+    JSON.parse(localStorage.getItem("currentUserLoginInsecure"));
 
   const MAIN_MENU_OPTION = "";
   const NEW_GAME_OPTION = "NEW";
@@ -26,6 +28,8 @@ export default function KhetManager() {
   const [menuOption, setMenuOption] = useState(
     localllyStoredUser ? LOGIN_OPTION : REGISTER_OPTION,
   );
+
+  const [failedLogin, setFailedLogin] = useState(false);
 
   const { user, setUser } = useContext(KhetUserContext);
 
@@ -77,7 +81,7 @@ export default function KhetManager() {
             "currentUserLoginInsecure",
             JSON.stringify({ userName, hashedPassword }),
           );
-          returnToMainMenu();
+          setMenuOption(MAIN_MENU_OPTION);
         }
         // TODO: SAD CLOWN, failed login treatment
         else {
@@ -87,6 +91,10 @@ export default function KhetManager() {
     });
   }
 
+  // Init login if user is stored locally
+  if (localllyStoredUser) {
+    processLogin(localllyStoredUser.userName, "tooManyCats");
+  }
   // HARD SHUT DOWN ANYONE TRYING TO LOAD THE MAIN MENU WHEN NOT LOGGED IN
   if (isOptionLockedDown) {
     <>
@@ -123,6 +131,7 @@ export default function KhetManager() {
           returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)}
           localllyStoredUser={localllyStoredUser}
           processLogin={processLogin}
+          failedLogin={failedLogin}
         />
       )}
       {menuOption && menuOption == NEW_GAME_OPTION && (

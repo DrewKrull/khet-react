@@ -5,16 +5,19 @@ import { createHash } from "node:crypto";
 import { login } from "@/service/khetservice";
 import { KhetUserContext } from "@/context/khetUserContext";
 
-export default function LoginForm({ returnToMainMenu, localllyStoredUser. processLogin }) {
+export default function LoginForm({
+  returnToMainMenu,
+  localllyStoredUser,
+  processLogin,
+  failedLogin,
+}) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [failedLogin, setFailedLogin] = useState(false);
   const { user, setUser } = useContext(KhetUserContext);
-
 
   function handleLogin(e) {
     e.preventDefault();
-    // JUNK
+    processLogin(userName, password);
   }
 
   // // If anything udpates the locally stored user to something real, attempt login
