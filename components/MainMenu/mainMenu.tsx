@@ -46,6 +46,7 @@ export default function MainMenu() {
   function loadGameById(loadGameId) {
     loadGame(loadGameId).then((loaded) => {
       setCurrentGame(loaded);
+      setCurrentGame(loaded.gameID);
       // Go to play mode on loading game
       setMenuOption(PLAY_OPTION);
     });
@@ -92,7 +93,11 @@ export default function MainMenu() {
         <LoadGameForm loadGame={loadGameById} />
       )}
       {menuOption && menuOption == PLAY_OPTION && (
-        <PlayGame board={currentGame} currentGameID={currentGameID} />
+        <PlayGame
+          board={currentGame}
+          currentGameID={currentGameID}
+          refreshBoard={loadGameById}
+        />
       )}
       {menuOption && menuOption == REGISTER_OPTION && (
         <Register

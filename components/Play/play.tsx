@@ -5,7 +5,7 @@ import ActionBar from "./actionBar";
 import { KhetUserContext } from "@/context/khetUserContext";
 import { pollGame } from "@/service/khetservice";
 
-export default function PlayGame({ currentGameID, board }) {
+export default function PlayGame({ currentGameID, board, refreshBoard }) {
   const intervalIdRef = useRef(0);
   const [selectedCell, setSelectedCell] = useState();
   const [selectedTarget, setSelectedTarget] = useState();
@@ -15,6 +15,7 @@ export default function PlayGame({ currentGameID, board }) {
 
   const currentPlayerId = board.currentTurnId;
   const loadedRevision = board.revision;
+
   const isActivePlayer = user.userId == currentPlayerId;
 
   function selectCell(cellSelection) {
@@ -42,21 +43,16 @@ export default function PlayGame({ currentGameID, board }) {
       pollGame(currentGameID).then((currentRevision) => {
         // Is board stale?
         if (loadedRevision != currentRevision) {
-          // Trigger reload
-          console.log(
-            "Board is stale!\nLoaded revision : " +
-              loadedRevision +
-              " vs. " +
-              currentRevision,
-          );
+          console.log("Refresh for " + currentGameID);
+          refreshBoard(currentGameID);
         }
       });
-    }, 5000);
+    }, 500); // Half second for now, move to properties
 
     return () => {
       clearInterval(intervalIdRef.current);
     };
-  }, [currentGameID]);
+  }, [currentGameID, loadedRevision, refreshBoard]);
 
   return (
     <>
