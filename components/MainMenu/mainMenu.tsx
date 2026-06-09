@@ -18,8 +18,10 @@ export default function MainMenu() {
   const PLAY_OPTION = "PLAY";
   const REGISTER_OPTION = "REGISTER";
   const [menuOption, setMenuOption] = useState(REGISTER_OPTION);
+  const [loadedGame, setLoadedGame] = useState(null);
 
   const { user, setUser } = useContext(KhetUserContext);
+
   const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
     useContext(KhetGameContext);
   const { currentTurnId, setCurrentTurnId } = useState("");
@@ -39,6 +41,14 @@ export default function MainMenu() {
     setCurrentGame(null);
     setCurrentGameID(null);
     setMenuOption(MAIN_MENU_OPTION);
+  }
+
+  function loadGameById(loadGameId) {
+    loadGame(loadGameId).then((loaded) => {
+      setCurrentGame(loaded);
+      // Go to play mode on loading game
+      setMenuOption(PLAY_OPTION);
+    });
   }
 
   // HARD SHUT DOWN ANYONE TRYING TO LOAD THE MAIN MENU WHEN NOT LOGGED IN
@@ -79,7 +89,7 @@ export default function MainMenu() {
         <NewGameForm onNewGame={handleNewGame} />
       )}
       {menuOption && menuOption == LOAD_GAME_OPTION && (
-        <LoadGameForm gameLoaded={() => setMenuOption(PLAY_OPTION)} />
+        <LoadGameForm loadGame={loadGameById} />
       )}
       {menuOption && menuOption == PLAY_OPTION && (
         <PlayGame board={currentGame} currentGameID={currentGameID} />

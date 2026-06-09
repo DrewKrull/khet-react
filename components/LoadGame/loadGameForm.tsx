@@ -7,18 +7,12 @@ import { useContext } from "react";
 import { KhetGameContext } from "@/context/khetGameContext";
 import { KhetUserContext } from "@/context/khetUserContext";
 
-export default function LoadGameForm({ gameLoaded }) {
+export default function LoadGameForm({ loadGame }) {
   const { user, setUser } = useContext(KhetUserContext);
   const loggedInUser = user && user.userId;
-  const { currentGameID, currentGame, setCurrentGameID, setCurrentGame } =
-    useContext(KhetGameContext);
 
   function selectGame(loadGameId) {
-    const loadedGame = loadGame(loadGameId).then((loaded) => {
-      setCurrentGameID(loadGameId);
-      setCurrentGame(loaded);
-      gameLoaded();
-    });
+    loadGame(loadGameId);
   }
 
   const {
@@ -38,14 +32,13 @@ export default function LoadGameForm({ gameLoaded }) {
 
   return (
     <div>
-      {!currentGameID &&
-        savedGames.map((savedGame) => (
-          <SavedGame
-            key={savedGame.gameID}
-            savedGame={savedGame}
-            selectSavedGame={(e) => selectGame(savedGame.gameID)}
-          />
-        ))}
+      {savedGames.map((savedGame) => (
+        <SavedGame
+          key={savedGame.gameID}
+          savedGame={savedGame}
+          selectSavedGame={(e) => selectGame(savedGame.gameID)}
+        />
+      ))}
     </div>
   );
 }

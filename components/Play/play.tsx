@@ -36,6 +36,7 @@ export default function PlayGame({ currentGameID, board }) {
     setIsSelectingTarget(false);
   }
 
+  // Poll to see if need to refresh game
   useEffect(() => {
     intervalIdRef.current = window.setInterval(() => {
       pollGame(currentGameID).then((currentRevision) => {
