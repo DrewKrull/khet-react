@@ -12,7 +12,9 @@ export default function PlayGame({ currentGameID, board }) {
   const [isSelectingTarget, setIsSelectingTarget] = useState(false);
 
   const { user, setUser } = useContext(KhetUserContext);
+
   const currentPlayerId = board.currentTurnId;
+  const loadedRevision = board.revision;
   const isActivePlayer = user.userId == currentPlayerId;
 
   function selectCell(cellSelection) {
@@ -36,8 +38,18 @@ export default function PlayGame({ currentGameID, board }) {
 
   useEffect(() => {
     intervalIdRef.current = window.setInterval(() => {
-      pollGame(currentGameID);
-      console.log(intervalIdRef.current);
+      pollGame(currentGameID).then((currentRevision) => {
+        // Is board stale?
+        if (loadedRevision != currentRevision) {
+          // Trigger reload
+          console.log(
+            "Board is stale!\nLoaded revision : " +
+              loadedRevision +
+              " vs. " +
+              currentRevision,
+          );
+        }
+      });
     }, 5000);
 
     return () => {
