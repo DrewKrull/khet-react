@@ -10,7 +10,7 @@ import { KhetGameContext } from "@/context/khetGameContext";
 import { loadGame } from "@/service/khetservice";
 import Register from "@/components/Register/register";
 
-export default function MainMenu() {
+export default function KhetManager() {
   const MAIN_MENU_OPTION = "";
   const NEW_GAME_OPTION = "NEW";
   const LOAD_GAME_OPTION = "LOAD";

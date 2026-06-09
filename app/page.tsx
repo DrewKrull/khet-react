@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { IMAGE_PATH, IMAGE_KHET_HEADER } from "@/constants/KhetConstants";
-import MainMenu from "@/components/MainMenu/mainMenu";
+import MainMenu from "@/components/KhetManager/khetManager";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { KhetGameProvider } from "@/context/khetGameContext";
 import { KhetUserProvider } from "@/context/khetUserContext";
+import KhetManager from "@/components/KhetManager/khetManager";
 export default function Home() {
   const queryClient = new QueryClient();
   const headerImage = IMAGE_PATH + IMAGE_KHET_HEADER;
@@ -22,7 +23,7 @@ export default function Home() {
           <div className="khet-application">
             <KhetGameProvider>
               <KhetUserProvider>
-                <MainMenu />
+                <KhetManager />
               </KhetUserProvider>
             </KhetGameProvider>
           </div>
