@@ -46,7 +46,7 @@ export default function MainMenu() {
   function loadGameById(loadGameId) {
     loadGame(loadGameId).then((loaded) => {
       setCurrentGame(loaded);
-      setCurrentGame(loaded.gameID);
+      setCurrentGameID(loaded.gameID);
       // Go to play mode on loading game
       setMenuOption(PLAY_OPTION);
     });

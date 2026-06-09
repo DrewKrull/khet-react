@@ -40,13 +40,16 @@ export default function PlayGame({ currentGameID, board, refreshBoard }) {
   // Poll to see if need to refresh game
   useEffect(() => {
     intervalIdRef.current = window.setInterval(() => {
-      pollGame(currentGameID).then((currentRevision) => {
-        // Is board stale?
-        if (loadedRevision != currentRevision) {
-          console.log("Refresh for " + currentGameID);
-          refreshBoard(currentGameID);
-        }
-      });
+      // Only poll if we already have a revision
+      if (loadedRevision) {
+        pollGame(currentGameID).then((currentRevision) => {
+          // Is board stale?
+          if (loadedRevision != currentRevision) {
+            console.log("Refresh for " + currentGameID);
+            refreshBoard(currentGameID);
+          }
+        });
+      }
     }, 500); // Half second for now, move to properties
 
     return () => {
