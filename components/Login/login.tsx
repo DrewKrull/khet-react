@@ -1,41 +1,30 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createHash } from "node:crypto";
 import { login } from "@/service/khetservice";
 import { KhetUserContext } from "@/context/khetUserContext";
 
-export default function LoginForm({ returnToMainMenu }) {
+export default function LoginForm({ returnToMainMenu, localllyStoredUser. processLogin }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [failedLogin, setFailedLogin] = useState(false);
   const { user, setUser } = useContext(KhetUserContext);
 
-  async function calculateHash(text) {
-    return createHash("sha256").update(text).digest("base64");
-  }
 
   function handleLogin(e) {
     e.preventDefault();
-    // Hash the password immediately why not?
-    let hashedPassword = "";
-    calculateHash(password).then((result) => {
-      hashedPassword = result;
-      // Attempt login and store in context
-      login(userName, hashedPassword).then((result) => {
-        // Happy path, login produced a result
-        if (result) {
-          setUser(result);
-          localStorage.setItem("currentUser", JSON.stringify(result));
-          returnToMainMenu();
-        }
-        // TODO: SAD CLOWN, failed login treatment
-        else {
-          setFailedLogin(true);
-        }
-      });
-    });
+    // JUNK
   }
+
+  // // If anything udpates the locally stored user to something real, attempt login
+  // useEffect(() => {
+
+  //   if (localllyStoredUser) {
+  //     console.log(localllyStoredUser);
+  //   }
+  // }, [localllyStoredUser]);
+
   return (
     <div>
       <div className="formHeader">Log In</div>

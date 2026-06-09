@@ -9,16 +9,23 @@ import PlayGame from "../Play/play";
 import { KhetGameContext } from "@/context/khetGameContext";
 import { loadGame } from "@/service/khetservice";
 import Register from "@/components/Register/register";
+import { createHash } from "crypto";
+import { login } from "@/service/khetservice";
 
 export default function KhetManager() {
+  // Get any stored user info from localstorage
+  const localllyStoredUser =
+    localStorage && localStorage.getItem("currentUserLoginInsecure");
+
   const MAIN_MENU_OPTION = "";
   const NEW_GAME_OPTION = "NEW";
   const LOAD_GAME_OPTION = "LOAD";
   const LOGIN_OPTION = "LOGIN";
   const PLAY_OPTION = "PLAY";
   const REGISTER_OPTION = "REGISTER";
-  const [menuOption, setMenuOption] = useState(REGISTER_OPTION);
-  const [loadedGame, setLoadedGame] = useState(null);
+  const [menuOption, setMenuOption] = useState(
+    localllyStoredUser ? LOGIN_OPTION : REGISTER_OPTION,
+  );
 
   const { user, setUser } = useContext(KhetUserContext);
 
@@ -27,6 +34,10 @@ export default function KhetManager() {
   const { currentTurnId, setCurrentTurnId } = useState("");
   const isOptionLockedDown =
     menuOption != REGISTER_OPTION && menuOption != LOGIN_OPTION && !user;
+
+  async function calculateHash(text) {
+    return createHash("sha256").update(text).digest("base64");
+  }
 
   function handleNewGame(gameID) {
     // Load the new game then enter player mode
@@ -49,6 +60,30 @@ export default function KhetManager() {
       setCurrentGameID(loaded.gameID);
       // Go to play mode on loading game
       setMenuOption(PLAY_OPTION);
+    });
+  }
+
+  function processLogin(userName, password) {
+    // Hash the password immediately why not?
+    let hashedPassword = "";
+    calculateHash(password).then((result) => {
+      hashedPassword = result;
+      // Attempt login and store in context
+      login(userName, hashedPassword).then((result) => {
+        // Happy path, login produced a result
+        if (result) {
+          setUser(result);
+          localStorage.setItem(
+            "currentUserLoginInsecure",
+            JSON.stringify({ userName, hashedPassword }),
+          );
+          returnToMainMenu();
+        }
+        // TODO: SAD CLOWN, failed login treatment
+        else {
+          setFailedLogin(true);
+        }
+      });
     });
   }
 
@@ -84,7 +119,11 @@ export default function KhetManager() {
         </div>
       )}
       {menuOption && menuOption == LOGIN_OPTION && (
-        <LoginForm returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)} />
+        <LoginForm
+          returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)}
+          localllyStoredUser={localllyStoredUser}
+          processLogin={processLogin}
+        />
       )}
       {menuOption && menuOption == NEW_GAME_OPTION && (
         <NewGameForm onNewGame={handleNewGame} />

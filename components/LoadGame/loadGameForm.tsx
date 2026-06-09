@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { KhetGameContext } from "@/context/khetGameContext";
 import { KhetUserContext } from "@/context/khetUserContext";
 
-export default function LoadGameForm({ loadGame }) {
+export default function LoadGameForm({ , processLogin }) {
   const { user, setUser } = useContext(KhetUserContext);
   const loggedInUser = user && user.userId;
 
