@@ -4,6 +4,7 @@ import {
   makeMoveEndpoint,
   newGameEndpoint,
   opponentsEndpoint,
+  pollGameEndpoint,
   registerUserEndpoint,
   savedGamesEndpoint,
 } from "@/constants/KhetConstants";
@@ -170,6 +171,24 @@ export async function getOpponents(playerId) {
     // Read in the actual data
     const responseData = await response.json();
     return responseData.opponents;
+  } catch (error) {
+    if (error instanceof Error) console.error(error.message);
+  }
+}
+
+export async function pollGame(gameId) {
+  try {
+    const params = new URLSearchParams({ gameId });
+    const fetchUrl = pollGameEndpoint + "?" + params;
+    const response = await fetch(fetchUrl);
+
+    if (!response.ok) {
+      throw new Error("Response status: ${response.status}");
+    }
+
+    // Read in the actual data
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }

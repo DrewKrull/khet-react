@@ -1,13 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Board from "../Board/board";
 import BoardData from "../Board/boardData";
 import ActionBar from "./actionBar";
 import { KhetUserContext } from "@/context/khetUserContext";
+import { pollGame } from "@/service/khetservice";
 
 export default function PlayGame({ currentGameID, board }) {
+  const intervalIdRef = useRef(0);
   const [selectedCell, setSelectedCell] = useState();
   const [selectedTarget, setSelectedTarget] = useState();
   const [isSelectingTarget, setIsSelectingTarget] = useState(false);
+
   const { user, setUser } = useContext(KhetUserContext);
   const currentPlayerId = board.currentTurnId;
   const isActivePlayer = user.userId == currentPlayerId;
@@ -30,6 +33,18 @@ export default function PlayGame({ currentGameID, board }) {
     selectTarget(null);
     setIsSelectingTarget(false);
   }
+
+  useEffect(() => {
+    intervalIdRef.current = window.setInterval(() => {
+      pollGame(currentGameID);
+      console.log(intervalIdRef.current);
+    }, 5000);
+
+    return () => {
+      clearInterval(intervalIdRef.current);
+    };
+  }, [currentGameID]);
+
   return (
     <>
       <div className="play-container">
