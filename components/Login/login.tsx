@@ -23,6 +23,7 @@ export default function LoginForm({ returnToMainMenu }) {
       // Attempt login and store in context
       login(userName, hashedPassword).then((result) => {
         setUser(result);
+        localStorage.setItem("currentUser", JSON.stringify(result));
         returnToMainMenu();
       });
     });
