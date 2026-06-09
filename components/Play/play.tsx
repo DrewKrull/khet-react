@@ -30,7 +30,6 @@ export default function PlayGame({ currentGameID, board }) {
     selectTarget(null);
     setIsSelectingTarget(false);
   }
-  console.log(isActivePlayer);
   return (
     <>
       <div className="play-container">
