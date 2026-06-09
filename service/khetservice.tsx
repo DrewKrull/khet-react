@@ -47,11 +47,11 @@ export async function getNewGameData(
 
     if (!response.ok) {
       throw new Error("Response status: ${response.status}");
+    } else {
+      // Read in the actual data
+      const responseData = await response.json();
+      return responseData.board;
     }
-
-    // Read in the actual data
-    const responseData = await response.json();
-    return responseData.board;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }
@@ -72,12 +72,12 @@ export async function login(userName, password) {
 
     if (!response.ok) {
       throw new Error("Response status: ${response.status}");
+    } else {
+      // Read in the actual data
+      const responseData = await response.json();
+
+      return responseData;
     }
-
-    // Read in the actual data
-    const responseData = await response.json();
-
-    return responseData;
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }

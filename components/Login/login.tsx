@@ -22,9 +22,13 @@ export default function LoginForm({ returnToMainMenu }) {
       hashedPassword = result;
       // Attempt login and store in context
       login(userName, hashedPassword).then((result) => {
-        setUser(result);
-        localStorage.setItem("currentUser", JSON.stringify(result));
-        returnToMainMenu();
+        // Happy path, login produced a result
+        if (result) {
+          setUser(result);
+          localStorage.setItem("currentUser", JSON.stringify(result));
+          returnToMainMenu();
+        }
+        // TODO: SAD CLOWN, failed login treatment
       });
     });
   }
