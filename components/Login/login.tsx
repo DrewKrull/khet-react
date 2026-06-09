@@ -8,6 +8,7 @@ import { KhetUserContext } from "@/context/khetUserContext";
 export default function LoginForm({ returnToMainMenu }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [failedLogin, setFailedLogin] = useState(false);
   const { user, setUser } = useContext(KhetUserContext);
 
   async function calculateHash(text) {
@@ -29,6 +30,9 @@ export default function LoginForm({ returnToMainMenu }) {
           returnToMainMenu();
         }
         // TODO: SAD CLOWN, failed login treatment
+        else {
+          setFailedLogin(true);
+        }
       });
     });
   }
@@ -36,6 +40,9 @@ export default function LoginForm({ returnToMainMenu }) {
     <div>
       <div className="formHeader">Log In</div>
       <form onSubmit={handleLogin}>
+        {failedLogin && (
+          <div className="form-row">** Invalid login - please try again **</div>
+        )}
         <div className="form-row">
           <label>Username:</label>
           <input
