@@ -13,10 +13,15 @@ import { createHash } from "crypto";
 import { login } from "@/service/khetservice";
 
 export default function KhetManager() {
-  const storedUserJson = localStorage.getItem("currentUserLoginInsecure");
-
+  let storedUserJson: string | null = "";
+  if (typeof window !== "undefined") {
+    storedUserJson = localStorage.getItem("currentUserLoginInsecure");
+  }
+  let locallyStoredUser = null;
   // Get any stored user info from localstorage
-  const locallyStoredUser = JSON.parse(storedUserJson);
+  if (storedUserJson && storedUserJson.length > 0) {
+    locallyStoredUser = JSON.parse(storedUserJson);
+  }
   let locallyStoredUserName = "";
   let locallyStoredPassword = "";
 
