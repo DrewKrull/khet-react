@@ -18,7 +18,7 @@ export default function Home() {
       <div className="page-container">
         <div className="khet-container">
           <div className="khet-header">
-            <img src={headerImage} />
+            <img src={headerImage} className="headerImage" />
             {/* <Image src={headerImage} alt="KHET Branding" fill /> */}
           </div>
           <div className="khet-application">

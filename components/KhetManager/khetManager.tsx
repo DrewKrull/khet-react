@@ -101,6 +101,7 @@ export default function KhetManager() {
               JSON.stringify({ storedUserName, storedPassword }),
             );
             setMenuOption(MAIN_MENU_OPTION);
+            setFailedLogin(false);
           }
           // SAD CLOWN, failed login treatment
           else {

@@ -21,8 +21,11 @@ input {
 
 .khet-header {
   width: 100%;
-  height: 15em;
   position: relative;
+}
+
+.headerImage {
+  width: 100%;
 }
 
 .khet-application {
