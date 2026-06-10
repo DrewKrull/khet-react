@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NewGameForm from "../NewGame/newGameForm";
 import LoadGameForm from "../LoadGame/loadGameForm";
 import LoginForm from "../Login/login";
@@ -13,11 +13,20 @@ import { createHash } from "crypto";
 import { login } from "@/service/khetservice";
 
 export default function KhetManager() {
+  const storedUserJson = localStorage.getItem("currentUserLoginInsecure");
+
   // Get any stored user info from localstorage
-  const localllyStoredUser =
-    localStorage &&
-    localStorage != null &&
-    JSON.parse(localStorage.getItem("currentUserLoginInsecure"));
+  const locallyStoredUser = JSON.parse(storedUserJson);
+  let locallyStoredUserName = "";
+  let locallyStoredPassword = "";
+
+  if (locallyStoredUser) {
+    locallyStoredUserName = locallyStoredUser["storedUserName"];
+    locallyStoredPassword = locallyStoredUser["storedPassword"];
+  }
+
+  const [storedUserName, setStoredUserName] = useState(locallyStoredUserName);
+  const [storedPassword, setStoredPassword] = useState(locallyStoredPassword);
 
   const MAIN_MENU_OPTION = "";
   const NEW_GAME_OPTION = "NEW";
@@ -26,10 +35,8 @@ export default function KhetManager() {
   const PLAY_OPTION = "PLAY";
   const REGISTER_OPTION = "REGISTER";
   const [menuOption, setMenuOption] = useState(
-    localllyStoredUser ? LOGIN_OPTION : REGISTER_OPTION,
+    locallyStoredUserName ? LOGIN_OPTION : REGISTER_OPTION,
   );
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
-
   const [failedLogin, setFailedLogin] = useState(false);
 
   const { user, setUser } = useContext(KhetUserContext);
@@ -68,47 +75,47 @@ export default function KhetManager() {
     });
   }
 
-  function processLogin(userName, password) {
-    // First check / set the login flag to prevent multiple fires
-    if (isLoggingIn) {
-      return;
-    } else {
-      setIsLoggingIn(true);
-    }
-    // Hash the password immediately why not?
-    let hashedPassword = "";
-    calculateHash(password).then((result) => {
-      hashedPassword = result;
-      // Attempt login and store in context
-      login(userName, hashedPassword).then((result) => {
-        // Happy path, login produced a result
-        if (result) {
-          setUser(result);
-          localStorage.setItem(
-            "currentUserLoginInsecure",
-            JSON.stringify({ userName, hashedPassword }),
-          );
-          setMenuOption(MAIN_MENU_OPTION);
-        }
-        // SAD CLOWN, failed login treatment
-        else {
-          setFailedLogin(true);
-        }
-
-        if (isLoggingIn) setIsLoggingIn(false);
+  useEffect(() => {
+    if (
+      storedUserName &&
+      storedUserName.length > 0 &&
+      storedPassword &&
+      storedPassword.length > 0
+    ) {
+      // Hash the password immediately why not?
+      let hashedPassword = "";
+      calculateHash(storedPassword).then((result) => {
+        hashedPassword = result;
+        // Attempt login and store in context
+        login(storedUserName, hashedPassword).then((result) => {
+          // Happy path, login produced a result
+          if (result) {
+            setUser(result);
+            localStorage.setItem(
+              "currentUserLoginInsecure",
+              JSON.stringify({ storedUserName, storedPassword }),
+            );
+            setMenuOption(MAIN_MENU_OPTION);
+          }
+          // SAD CLOWN, failed login treatment
+          else {
+            setFailedLogin(true);
+          }
+        });
       });
-    });
-  }
+    }
+  }, [setUser, storedUserName, storedPassword]);
 
   function handleLogout() {
     setMenuOption(REGISTER_OPTION);
     localStorage.removeItem("currentUserLoginInsecure");
   }
 
-  // Init login if user is stored locally
-  if (localllyStoredUser) {
-    processLogin(localllyStoredUser.userName, "tooManyCats");
+  function processLogin(userName, password) {
+    setStoredUserName(userName);
+    setStoredPassword(password);
   }
+
   // HARD SHUT DOWN ANYONE TRYING TO LOAD THE MAIN MENU WHEN NOT LOGGED IN
   if (isOptionLockedDown) {
     <>
@@ -143,7 +150,7 @@ export default function KhetManager() {
       {menuOption && menuOption == LOGIN_OPTION && (
         <LoginForm
           returnToMainMenu={() => setMenuOption(MAIN_MENU_OPTION)}
-          localllyStoredUser={localllyStoredUser}
+          locallyStoredUser={locallyStoredUser}
           processLogin={processLogin}
           failedLogin={failedLogin}
         />

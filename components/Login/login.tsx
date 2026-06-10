@@ -7,7 +7,7 @@ import { KhetUserContext } from "@/context/khetUserContext";
 
 export default function LoginForm({
   returnToMainMenu,
-  localllyStoredUser,
+  locallyStoredUser,
   processLogin,
   failedLogin,
 }) {
