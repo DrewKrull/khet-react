@@ -28,6 +28,7 @@ export default function KhetManager() {
   const [menuOption, setMenuOption] = useState(
     localllyStoredUser ? LOGIN_OPTION : REGISTER_OPTION,
   );
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const [failedLogin, setFailedLogin] = useState(false);
 
@@ -68,6 +69,12 @@ export default function KhetManager() {
   }
 
   function processLogin(userName, password) {
+    // First check / set the login flag to prevent multiple fires
+    if (isLoggingIn) {
+      return;
+    } else {
+      setIsLoggingIn(true);
+    }
     // Hash the password immediately why not?
     let hashedPassword = "";
     calculateHash(password).then((result) => {
@@ -83,12 +90,19 @@ export default function KhetManager() {
           );
           setMenuOption(MAIN_MENU_OPTION);
         }
-        // TODO: SAD CLOWN, failed login treatment
+        // SAD CLOWN, failed login treatment
         else {
           setFailedLogin(true);
         }
+
+        if (isLoggingIn) setIsLoggingIn(false);
       });
     });
+  }
+
+  function handleLogout() {
+    setMenuOption(REGISTER_OPTION);
+    localStorage.removeItem("currentUserLoginInsecure");
   }
 
   // Init login if user is stored locally
@@ -107,7 +121,7 @@ export default function KhetManager() {
         <div className="menuHeading">Welcome to Khet Alpha</div>
         <HeroBar
           doLogin={() => setMenuOption(LOGIN_OPTION)}
-          doLogout={() => setMenuOption(REGISTER_OPTION)}
+          doLogout={handleLogout}
         />
       </div>
       {!menuOption && (
