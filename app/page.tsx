@@ -18,7 +18,8 @@ export default function Home() {
       <div className="page-container">
         <div className="khet-container">
           <div className="khet-header">
-            <Image src={headerImage} alt="KHET Branding" fill />
+            <img src={headerImage} />
+            {/* <Image src={headerImage} alt="KHET Branding" fill /> */}
           </div>
           <div className="khet-application">
             <KhetGameProvider>

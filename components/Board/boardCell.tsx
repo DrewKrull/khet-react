@@ -47,7 +47,7 @@ export default function BoardCell({
     <div className="board-cell" onClick={() => select()}>
       {cell && cell.onLaserPath && showLaser && (
         <div className="board-cell-laser-highlight">
-          <Image
+          <img
             className="board-cell-image"
             src={laserImage}
             width="50"
@@ -63,7 +63,7 @@ export default function BoardCell({
         className={`board-cell-image-container ${entityOrientation && "entity-orientation-" + entityOrientation}`}
       >
         {entityImage && (
-          <Image
+          <img
             className="board-cell-image"
             src={entityImage}
             width="50"
