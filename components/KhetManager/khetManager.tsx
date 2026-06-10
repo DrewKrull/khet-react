@@ -113,6 +113,8 @@ export default function KhetManager() {
   }, [setUser, storedUserName, storedPassword]);
 
   function handleLogout() {
+    setStoredUserName("");
+    setStoredPassword("");
     setMenuOption(REGISTER_OPTION);
     localStorage.removeItem("currentUserLoginInsecure");
   }
