@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
 
-  // basePath: "/khet",
-  allowedDevOrigins: ["192.168.86.*"],
+  basePath: "/khet",
+  // allowedDevOrigins: ["192.168.86.*"],
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete
