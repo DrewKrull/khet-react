@@ -102,6 +102,10 @@ input {
   left: 50%;
 }
 
+.entity-orientation-S {
+  transform: rotateZ(180deg);
+}
+
 .entity-orientation-SW {
   transform: rotateZ(0deg);
 }
@@ -157,7 +161,7 @@ input {
 }
 
 .menuOption {
-  background-color: aqua;
+  background-color: rgb(145, 145, 145);
   border-style: solid;
   border-width: 1px;
   padding-left: 1em;

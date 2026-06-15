@@ -4,12 +4,15 @@ import {
   BOARD_DIR_SOUTH,
   BOARD_DIR_WEST,
   ENTITY_TYPE_DJED,
+  ENTITY_TYPE_EMITTER,
   ENTITY_TYPE_EMPTY,
   ENTITY_TYPE_OBELISK,
   ENTITY_TYPE_PHAROAH,
   ENTITY_TYPE_PYRAMID,
   IMAGE_DJED_GREY,
   IMAGE_DJED_RED,
+  IMAGE_EMITTER_GREY,
+  IMAGE_EMITTER_RED,
   IMAGE_EMPTY_DARK_GREY,
   IMAGE_EMPTY_GREY,
   IMAGE_EMPTY_RED,
@@ -87,6 +90,9 @@ export function entityToImage(
   cellPlayer,
 ) {
   let imageFile = IMAGE_PATH;
+  if (entityType == ENTITY_TYPE_EMITTER)
+    if (entityPlayer == PLAYER_RED) imageFile += IMAGE_EMITTER_RED;
+    else imageFile += IMAGE_EMITTER_GREY;
   if (entityType == ENTITY_TYPE_DJED) {
     if (entityPlayer == PLAYER_RED) imageFile += IMAGE_DJED_RED;
     else imageFile += IMAGE_DJED_GREY;
