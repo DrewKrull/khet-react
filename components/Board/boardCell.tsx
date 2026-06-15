@@ -1,4 +1,3 @@
-import { IMAGE_LASER_STRAIGHT, IMAGE_PATH } from "@/constants/KhetConstants";
 import { entityToImage, laserDataToImage } from "@/util/Resolvers";
 
 import Image from "next/image";
