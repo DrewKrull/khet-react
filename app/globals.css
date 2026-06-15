@@ -153,6 +153,11 @@ input {
   width: 80%;
 }
 
+.boardData-yourTurn {
+  font-weight: bold;
+  width: 90%;
+}
+
 .boardData-expand {
   width: 20%;
 }

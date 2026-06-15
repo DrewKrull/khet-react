@@ -1,12 +1,40 @@
-import { PLAYER_RED } from "@/constants/KhetConstants";
 import { useState } from "react";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
-export default function BoardData({ board, currentGameID }) {
+export default function BoardData({
+  board,
+  isActivePLayer,
+  activePlayerId,
+  currentGameID,
+}) {
+  console.log(board);
+  console.log(activePlayerId);
+  if (activePlayerId == board.greyPlayerId) {
+    // If
+    console.log("Grey player active");
+  } else {
+    console.log("red player avtrive");
+  }
+  const opponentName = "bradley";
+
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <div className="boardData">
       <div className="boardData-summary">
+        <>
+          {isActivePLayer && (
+            <div className="boardData-yourTurn">
+              It's your turn! Don't keep {opponentName} waiting!
+            </div>
+          )}
+        </>
+        <>
+          {!isActivePLayer && (
+            <div className="boardData-notYourTurn">
+              Waiting on {opponentName}
+            </div>
+          )}
+        </>
         {board.winner && (
           <div className="boardData-winnerBanner">{board.winner} won!</div>
         )}
