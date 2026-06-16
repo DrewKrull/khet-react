@@ -60,7 +60,12 @@ export default function PlayGame({ currentGameID, board, refreshBoard }) {
   return (
     <>
       <div className="play-container">
-        <BoardData board={board} currentGameID={currentGameID} />
+        <BoardData
+          board={board}
+          currentGameID={currentGameID}
+          isActivePLayer={isActivePlayer}
+          activePlayerId={user.userId}
+        />
         <Board
           currentTurn={board.currentTurn}
           boardState={board.boardState}

@@ -3,9 +3,9 @@ import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
 export default function BoardData({
   board,
+  currentGameID,
   isActivePLayer,
   activePlayerId,
-  currentGameID,
 }) {
   console.log(board);
   console.log(activePlayerId);
