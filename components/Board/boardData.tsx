@@ -9,13 +9,20 @@ export default function BoardData({
 }) {
   console.log(board);
   console.log(activePlayerId);
+
+  let activePlayerName = "";
+  let opponentPlayerName = "";
+  // Check the color of the active (logged in) player, use that to get the nanes
   if (activePlayerId == board.greyPlayerId) {
-    // If
-    console.log("Grey player active");
+    // Active player is grey name, opponent red
+    activePlayerName = board.GreyPlayerName;
+    opponentPlayerName = board.RedPlayerName;
+    console.log(board.GreyPlayerName + " is active");
+    console.log(board.RedPlayerName + " is opponent");
   } else {
+    // Active player is red name, opponent grey
     console.log("red player avtrive");
   }
-  const opponentName = "bradley";
 
   const [isExpanded, setIsExpanded] = useState(false);
   return (
@@ -24,14 +31,15 @@ export default function BoardData({
         <>
           {isActivePLayer && (
             <div className="boardData-yourTurn">
-              It's your turn! Don't keep {opponentName} waiting!
+              It's your turn, {activePlayerName}!<br />
+              Don't keep {opponentPlayerName} waiting!
             </div>
           )}
         </>
         <>
           {!isActivePLayer && (
             <div className="boardData-notYourTurn">
-              Waiting on {opponentName}
+              Waiting on {opponentPlayerName}
             </div>
           )}
         </>
