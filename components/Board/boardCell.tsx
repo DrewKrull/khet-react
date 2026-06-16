@@ -8,6 +8,7 @@ export default function BoardCell({
   selectedCell,
   selectedTarget,
 }) {
+  console.log(cell);
   const showLaser = true;
   const entityType =
     cell.entity && cell.entity["@type"] && cell.entity["@type"];
@@ -43,7 +44,11 @@ export default function BoardCell({
   }
 
   return (
-    <div className="board-cell" onClick={() => select()}>
+    <div
+      className="board-cell"
+      onClick={() => select()}
+      id={"coll:" + cell.columnNumber + ";row:" + cell.rowNumber}
+    >
       {cell && cell.onLaserPath && showLaser && (
         <div className="board-cell-laser-highlight">
           <img
