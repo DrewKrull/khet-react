@@ -8,15 +8,19 @@ export default function BoardColumn({
 }) {
   return (
     <div key={column.columnNumber}>
-      {column.cells.map((cell) => (
-        <BoardCell
-          cell={cell}
-          key={cell.rowNumber}
-          selectCell={selectCell}
-          selectedCell={selectedCell}
-          selectedTarget={selectedTarget}
-        />
-      ))}
+      {column.cells.map((cell) => {
+        console.log(cell.rowNumber);
+
+        return (
+          <BoardCell
+            cell={cell}
+            key={cell.rowNumber}
+            selectCell={selectCell}
+            selectedCell={selectedCell}
+            selectedTarget={selectedTarget}
+          />
+        );
+      })}
     </div>
   );
 }

@@ -89,7 +89,8 @@ export function entityToImage(
   stackedEntity,
   cellPlayer,
 ) {
-  let imageFile = IMAGE_PATH;
+  // Default to no image at all
+  let imageFile = "";
   if (entityType == ENTITY_TYPE_EMITTER)
     if (entityPlayer == PLAYER_RED) imageFile += IMAGE_EMITTER_RED;
     else imageFile += IMAGE_EMITTER_GREY;
@@ -119,5 +120,7 @@ export function entityToImage(
       imageFile += IMAGE_EMPTY_DARK_GREY;
     }
   }
+  // If we resolved an image, add the path
+  if (imageFile) imageFile = IMAGE_PATH + imageFile;
   return imageFile;
 }

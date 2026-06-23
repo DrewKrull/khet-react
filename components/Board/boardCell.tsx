@@ -8,7 +8,6 @@ export default function BoardCell({
   selectedCell,
   selectedTarget,
 }) {
-  console.log(cell);
   const showLaser = true;
   const entityType =
     cell.entity && cell.entity["@type"] && cell.entity["@type"];
