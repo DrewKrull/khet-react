@@ -1,5 +1,6 @@
 import {
   ENTITY_TYPE_DJED,
+  ENTITY_TYPE_EMITTER,
   ENTITY_TYPE_EMPTY,
   ENTITY_TYPE_PYRAMID,
   MOVE_MOVE,
@@ -55,6 +56,9 @@ export default function ActionBar({
       clearSelection();
     }
   }
+
+  // Don't return any action bar for the emitter
+  if (selectedCell.entityType == ENTITY_TYPE_EMITTER) return;
   return (
     <>
       Column {selectedCell.columnNumber} Row {selectedCell.rowNumber} contains{" "}
