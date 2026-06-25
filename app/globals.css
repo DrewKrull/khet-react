@@ -54,6 +54,18 @@ input {
 .board-cell-image-container {
 }
 
+.board-cell-valid-target-highlight {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: rgb(115, 187, 0);
+  opacity: 70%;
+  z-index: 20;
+  border-color: rgb(255, 255, 255);
+  border-width: 5px;
+  border-style: solid;
+}
+
 .board-cell-selected {
   width: 50px;
   height: 50px;

@@ -35,7 +35,12 @@ export default function BoardCell({
   let isValidTarget = false;
 
   // For highlighting of valid moves, if this is not the selected cell and there is no current target, determine whether it's a valid target
-  if (!cellIsSelected && !selectedTarget) {
+  if (
+    !cellIsSelected &&
+    !selectedTarget &&
+    selectedCell &&
+    Object.hasOwn(selectedCell, "validTargets")
+  ) {
     for (const validTarget of selectedCell.validTargets) {
       if (
         validTarget.columnNumber == cell.columnNumber &&
@@ -44,9 +49,6 @@ export default function BoardCell({
         isValidTarget = true;
       }
     }
-  }
-  if (isValidTarget) {
-    console.log(cell);
   }
 
   function select() {
@@ -65,6 +67,10 @@ export default function BoardCell({
       onClick={() => select()}
       id={"coll:" + cell.columnNumber + ";row:" + cell.rowNumber}
     >
+      {cellIsSelected && <div className="board-cell-selected" />}
+      {cellIsTarget && <div className="board-cell-targeted" />}
+      {isValidTarget && <div className="board-cell-valid-target-highlight" />}
+
       {cell && cell.onLaserPath && showLaser && (
         <div className="board-cell-laser-highlight">
           <img
@@ -77,8 +83,6 @@ export default function BoardCell({
         </div>
       )}
 
-      {cellIsSelected && <div className="board-cell-selected" />}
-      {cellIsTarget && <div className="board-cell-targeted" />}
       <div
         className={`board-cell-image-container ${entityOrientation && "entity-orientation-" + entityOrientation}`}
       >
