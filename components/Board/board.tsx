@@ -32,9 +32,8 @@ export default function Board({
             1 &&
           Math.abs(selectedCell.rowNumber - cellSelection.rowNumber) <= 1
         ) {
-          // Only allow targeting of empty cells with valid targets
-          if (cellSelection.entityType == ENTITY_TYPE_EMPTY && isValidTarget)
-            selectTarget(cellSelection);
+          // Used to only allow targeting of empty cells with valid targets. Let the backend decide valid cells - remember stacking?? Duncecap
+          if (isValidTarget) selectTarget(cellSelection);
         }
       } else {
         // Only allow selection of current turn's entity
