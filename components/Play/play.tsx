@@ -45,7 +45,6 @@ export default function PlayGame({ currentGameID, board, refreshBoard }) {
         pollGame(currentGameID).then((currentRevision) => {
           // Is board stale?
           if (loadedRevision != currentRevision) {
-            console.log("Refresh for " + currentGameID);
             refreshBoard(currentGameID);
           }
         });

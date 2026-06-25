@@ -7,9 +7,6 @@ export default function BoardData({
   isActivePLayer,
   activePlayerId,
 }) {
-  console.log(board);
-  console.log(activePlayerId);
-
   let activePlayerName = "";
   let opponentPlayerName = "";
   // Check the color of the active (logged in) player, use that to get the nanes
@@ -17,11 +14,6 @@ export default function BoardData({
     // Active player is grey name, opponent red
     activePlayerName = board.GreyPlayerName;
     opponentPlayerName = board.RedPlayerName;
-    console.log(board.GreyPlayerName + " is active");
-    console.log(board.RedPlayerName + " is opponent");
-  } else {
-    // Active player is red name, opponent grey
-    console.log("red player avtrive");
   }
 
   const [isExpanded, setIsExpanded] = useState(false);

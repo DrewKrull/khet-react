@@ -9,8 +9,6 @@ export default function BoardColumn({
   return (
     <div key={column.columnNumber}>
       {column.cells.map((cell) => {
-        console.log(cell.rowNumber);
-
         return (
           <BoardCell
             cell={cell}

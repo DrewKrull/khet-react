@@ -32,6 +32,23 @@ export default function BoardCell({
     selectedTarget.columnNumber == cell.columnNumber &&
     selectedTarget.rowNumber == cell.rowNumber;
 
+  let isValidTarget = false;
+
+  // For highlighting of valid moves, if this is not the selected cell and there is no current target, determine whether it's a valid target
+  if (!cellIsSelected && !selectedTarget) {
+    for (const validTarget of selectedCell.validTargets) {
+      if (
+        validTarget.columnNumber == cell.columnNumber &&
+        validTarget.rowNumber == cell.rowNumber
+      ) {
+        isValidTarget = true;
+      }
+    }
+  }
+  if (isValidTarget) {
+    console.log(cell);
+  }
+
   function select() {
     selectCell({
       rowNumber: cell.rowNumber,

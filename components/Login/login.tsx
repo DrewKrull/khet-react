@@ -20,14 +20,6 @@ export default function LoginForm({
     processLogin(userName, password);
   }
 
-  // // If anything udpates the locally stored user to something real, attempt login
-  // useEffect(() => {
-
-  //   if (localllyStoredUser) {
-  //     console.log(localllyStoredUser);
-  //   }
-  // }, [localllyStoredUser]);
-
   return (
     <div>
       <div className="formHeader">Log In</div>
