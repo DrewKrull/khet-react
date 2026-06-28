@@ -5,6 +5,7 @@ export default function BoardColumn({
   selectCell,
   selectedCell,
   selectedTarget,
+  isGameOver,
 }) {
   return (
     <div key={column.columnNumber}>
@@ -16,6 +17,7 @@ export default function BoardColumn({
             selectCell={selectCell}
             selectedCell={selectedCell}
             selectedTarget={selectedTarget}
+            isGameOver={isGameOver}
           />
         );
       })}

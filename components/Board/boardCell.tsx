@@ -7,6 +7,7 @@ export default function BoardCell({
   selectCell,
   selectedCell,
   selectedTarget,
+  isGameOver,
 }) {
   const showLaser = true;
   const entityType =
@@ -74,6 +75,7 @@ export default function BoardCell({
       onClick={() => select()}
       id={"coll:" + cell.columnNumber + ";row:" + cell.rowNumber}
     >
+      {isGameOver && <div className="board-cell-disabled" />}
       {isCellAGrave && (
         <div className="board-cell-graveyard">
           <img
@@ -85,6 +87,7 @@ export default function BoardCell({
           />
         </div>
       )}
+
       {cellIsSelected && <div className="board-cell-selected" />}
       {cellIsTarget && <div className="board-cell-targeted" />}
       {isValidTarget && <div className="board-cell-valid-target-highlight" />}

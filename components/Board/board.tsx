@@ -45,7 +45,6 @@ export default function Board({
   }
   return (
     <div className="board-container">
-      <div className="board-disabled" />
       <div className="board">
         {boardState &&
           boardState.columns &&
@@ -56,6 +55,7 @@ export default function Board({
               selectCell={selectBoardCell}
               selectedCell={selectedCell}
               selectedTarget={selectedTarget}
+              isGameOver={winner}
             />
           ))}
       </div>
