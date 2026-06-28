@@ -45,6 +45,7 @@ export default function Board({
   }
   return (
     <div className="board-container">
+      <div className="board-disabled" />
       <div className="board">
         {boardState &&
           boardState.columns &&

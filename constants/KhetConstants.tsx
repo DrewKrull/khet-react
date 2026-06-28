@@ -7,6 +7,7 @@ export const makeMoveEndpoint = serviceURL + "move";
 export const registerUserEndpoint = serviceURL + "registerUser";
 export const opponentsEndpoint = serviceURL + "getOpponents";
 export const pollGameEndpoint = serviceURL + "gameRevision";
+export const rulesEndpoint = serviceURL + "rules";
 
 export const PLAYER_GREY = "GREY";
 export const PLAYER_RED = "RED";

@@ -33,6 +33,7 @@ input {
 }
 
 .board {
+  width: auto;
   display: grid;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
@@ -44,6 +45,16 @@ input {
 }
 
 .board-container {
+  display: grid;
+  grid-template-columns: max-content;
+}
+
+.board-disabled {
+  background-color: slategrey;
+  height: auto;
+  z-index: 100;
+  position: absolute;
+  opacity: 50%;
 }
 
 .board-cell {
@@ -216,6 +227,13 @@ input {
 .menuHeading {
   font-size: 2em;
   font-weight: bolder;
+}
+
+.rulesLink {
+  font-size: 0.5em;
+  font-weight: normal;
+  font-style: italic;
+  color: teal;
 }
 
 .heroBar {

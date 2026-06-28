@@ -11,6 +11,7 @@ import { loadGame } from "@/service/khetservice";
 import Register from "@/components/Register/register";
 import { createHash } from "crypto";
 import { login } from "@/service/khetservice";
+import { rulesEndpoint } from "@/constants/KhetConstants";
 
 export default function KhetManager() {
   let storedUserJson: string | null = "";
@@ -133,7 +134,15 @@ export default function KhetManager() {
   return (
     <div>
       <div className="menuHeader">
-        <div className="menuHeading">Welcome to Khet Alpha</div>
+        <div className="menuHeading">
+          Welcome to Khet Alpha
+          <div className="rulesLink">
+            <a href={rulesEndpoint}>
+              New to the game? Have a look at the rules!
+            </a>
+          </div>
+        </div>
+
         <HeroBar
           doLogin={() => setMenuOption(LOGIN_OPTION)}
           doLogout={handleLogout}

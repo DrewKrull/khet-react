@@ -16,6 +16,18 @@ export default function BoardData({
     opponentPlayerName = board.RedPlayerName;
   }
 
+  // If we have a winner, xref to get the winner's name
+  let winnerName = "";
+  if (board.winner) {
+    if (board.winnerId == board.greyPlayerId) {
+      // Winner is grey
+
+      winnerName = board.GreyPlayerName;
+    } else {
+      opponentPlayerName = board.RedPlayerName;
+    }
+  }
+
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <div className="boardData">
@@ -29,14 +41,14 @@ export default function BoardData({
           )}
         </>
         <>
-          {!isActivePLayer && (
+          {!board.winner && !isActivePLayer && (
             <div className="boardData-notYourTurn">
               Waiting on {opponentPlayerName}
             </div>
           )}
         </>
         {board.winner && (
-          <div className="boardData-winnerBanner">{board.winner} won!</div>
+          <div className="boardData-winnerBanner">{winnerName} won!</div>
         )}
         {!board.winner && (
           <>
