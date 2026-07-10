@@ -231,10 +231,14 @@ input {
 }
 
 .rulesLink {
+  color: black;
   font-size: 0.5em;
-  font-weight: normal;
-  font-style: italic;
-  color: teal;
+  font-weight: bolder;
+  background-color: rgb(250, 250, 63);
+  padding: 1em;
+  margin: 1em;
+  width: 65%;
+  border: 1px dashed black;
 }
 
 .heroBar {

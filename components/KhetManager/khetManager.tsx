@@ -138,7 +138,10 @@ export default function KhetManager() {
           Welcome to Khet Alpha
           <div className="rulesLink">
             <a href={rulesEndpoint}>
-              New to the game? Have a look at the rules!
+              New to the game? Have a look at the{" "}
+              <i>
+                <u>rules!</u>
+              </i>
             </a>
           </div>
         </div>
