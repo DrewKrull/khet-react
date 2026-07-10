@@ -136,14 +136,14 @@ export default function KhetManager() {
       <div className="menuHeader">
         <div className="menuHeading">
           Welcome to Khet Alpha
-          <div className="rulesLink">
-            <a href={rulesEndpoint}>
+          <a href={rulesEndpoint}>
+            <div className="rulesLink">
               New to the game? Have a look at the{" "}
               <i>
                 <u>rules!</u>
               </i>
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
 
         <HeroBar
