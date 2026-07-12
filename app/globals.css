@@ -232,13 +232,32 @@ input {
 
 .rulesLink {
   color: black;
-  font-size: 0.5em;
+  font-size: 0.4em;
   font-weight: bolder;
   background-color: rgb(250, 250, 63);
   padding: 1em;
   margin: 1em;
   width: 65%;
   border: 1px dashed black;
+}
+
+.notif {
+  color: black;
+  font-size: 0.4em;
+  font-weight: bolder;
+  background-color: darkorange;
+  padding: 1em;
+  margin: 1em;
+  width: 65%;
+  border: 1px dashed black;
+}
+
+.notif-newGame {
+  background-color: rgb(255, 94, 0);
+}
+
+.notif:hover {
+  cursor: pointer;
 }
 
 .heroBar {

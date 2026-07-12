@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import NewGameForm from "../NewGame/newGameForm";
 import LoadGameForm from "../LoadGame/loadGameForm";
 import LoginForm from "../Login/login";
@@ -7,13 +7,14 @@ import { KhetUserContext, KhetUserProvider } from "@/context/khetUserContext";
 import HeroBar from "../HeroBar/heroBar";
 import PlayGame from "../Play/play";
 import { KhetGameContext } from "@/context/khetGameContext";
-import { loadGame } from "@/service/khetservice";
+import { loadGame, pollNotifications } from "@/service/khetservice";
 import Register from "@/components/Register/register";
 import { createHash } from "crypto";
 import { login } from "@/service/khetservice";
 import { rulesEndpoint } from "@/constants/KhetConstants";
 
 export default function KhetManager() {
+  const intervalIdRef = useRef(0);
   let storedUserJson: string | null = "";
   if (typeof window !== "undefined") {
     storedUserJson = localStorage.getItem("currentUserLoginInsecure");
@@ -33,6 +34,7 @@ export default function KhetManager() {
 
   const [storedUserName, setStoredUserName] = useState(locallyStoredUserName);
   const [storedPassword, setStoredPassword] = useState(locallyStoredPassword);
+  const [notifications, setNotifications] = useState([]);
 
   const MAIN_MENU_OPTION = "";
   const NEW_GAME_OPTION = "NEW";
@@ -125,6 +127,35 @@ export default function KhetManager() {
     setStoredPassword(password);
   }
 
+  // Poll notifications
+  useEffect(() => {
+    intervalIdRef.current = window.setInterval(() => {
+      pollNotifications(user.userId).then((notifsResponse) => {
+        setNotifications(notifsResponse.notifs);
+      });
+    }, 15000); // 30 sec for now, move to properties
+
+    return () => {
+      clearInterval(intervalIdRef.current);
+    };
+  }, [user]);
+
+  function handleNotifClick(notification) {
+    switch (notification.notificationType) {
+      case "LOAD_GAME":
+        // Put game loading code here
+        // Load the new game then enter player mode
+        const loadedGame = loadGame(notification.notificationPayload).then(
+          (loaded) => {
+            setCurrentGameID(notification.notificationPayload);
+            setCurrentGame(loaded);
+            setMenuOption(PLAY_OPTION);
+          },
+        );
+        break;
+    }
+  }
+
   // HARD SHUT DOWN ANYONE TRYING TO LOAD THE MAIN MENU WHEN NOT LOGGED IN
   if (isOptionLockedDown) {
     <>
@@ -144,6 +175,19 @@ export default function KhetManager() {
               </i>
             </div>
           </a>
+          <div id="notifications">
+            {notifications.map((notification, notifIndex) => {
+              return (
+                <div
+                  key={notifIndex}
+                  className={`notif ${notification.newGame ? "notif-newGame" : ""}`}
+                  onClick={() => handleNotifClick(notification)}
+                >
+                  {notification.friendlyMessage}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         <HeroBar
