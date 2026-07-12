@@ -105,6 +105,16 @@ export default function KhetManager() {
             );
             setMenuOption(MAIN_MENU_OPTION);
             setFailedLogin(false);
+            // Get once and wait for poll
+            if (
+              user &&
+              user.userId &&
+              notifications &&
+              notifications.length > 0
+            )
+              pollNotifications(user.userId).then((notifsResponse) => {
+                setNotifications(notifsResponse.notifs);
+              });
           }
           // SAD CLOWN, failed login treatment
           else {
@@ -113,7 +123,7 @@ export default function KhetManager() {
         });
       });
     }
-  }, [setUser, storedUserName, storedPassword]);
+  }, [setUser, storedUserName, storedPassword, user]);
 
   function handleLogout() {
     setStoredUserName("");
@@ -133,7 +143,7 @@ export default function KhetManager() {
       pollNotifications(user.userId).then((notifsResponse) => {
         setNotifications(notifsResponse.notifs);
       });
-    }, 15000); // 30 sec for now, move to properties
+    }, 30000); // 30 sec for now, move to properties
 
     return () => {
       clearInterval(intervalIdRef.current);
