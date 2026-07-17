@@ -1,5 +1,6 @@
+console.log("Env Var: " + process.env.NEXT_PUBLIC_KHET_ENDPOINT_URL);
 export const serviceURL = process.env.NEXT_PUBLIC_KHET_ENDPOINT_URL;
-console.log(serviceURL);
+console.log("Service URL: " + serviceURL);
 export const newGameEndpoint = serviceURL + "newGame";
 export const loadGameEndpoint = serviceURL + "loadGame";
 export const savedGamesEndpoint = serviceURL + "savedGames";
@@ -10,7 +11,7 @@ export const opponentsEndpoint = serviceURL + "getOpponents";
 export const pollGameEndpoint = serviceURL + "gameRevision";
 export const pollNotificationsEndpoint = serviceURL + "notifs";
 export const rulesEndpoint = serviceURL + "rules";
-console.log(rulesEndpoint);
+console.log("Rules Endpt:" + rulesEndpoint);
 
 export const PLAYER_GREY = "GREY";
 export const PLAYER_RED = "RED";
