@@ -1,4 +1,5 @@
-export const serviceURL = "http://localhost:8080/";
+export const serviceURL = process.env.NEXT_PUBLIC_KHET_ENDPOINT_URL;
+console.log(serviceURL);
 export const newGameEndpoint = serviceURL + "newGame";
 export const loadGameEndpoint = serviceURL + "loadGame";
 export const savedGamesEndpoint = serviceURL + "savedGames";
@@ -9,6 +10,7 @@ export const opponentsEndpoint = serviceURL + "getOpponents";
 export const pollGameEndpoint = serviceURL + "gameRevision";
 export const pollNotificationsEndpoint = serviceURL + "notifs";
 export const rulesEndpoint = serviceURL + "rules";
+console.log(rulesEndpoint);
 
 export const PLAYER_GREY = "GREY";
 export const PLAYER_RED = "RED";
