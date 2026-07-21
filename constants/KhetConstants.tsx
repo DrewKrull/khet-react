@@ -1,4 +1,4 @@
-console.log("Environment is : " + console.log(process.env.NODE_ENV);
+Ughconsole.log("Environment is : " + process.env.NODE_ENV);
 console.log("Env Var: " + process.env.NEXT_PUBLIC_KHET_ENDPOINT_URL);
 export const serviceURL = process.env.NEXT_PUBLIC_KHET_ENDPOINT_URL;
 console.log("Service URL: " + serviceURL);
